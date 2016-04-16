@@ -1,0 +1,14 @@
+<div>
+    <section>
+      <div ng-repeat="index in setup.maxPlayers track by $index">
+        <md-input-container>
+          <label>Pelaaja {{$index+1}}</label>
+          <input type="text" ng-model="setup.players[$index]">
+        </md-input-container>
+      </div>
+    </section>
+
+    <section>
+      <md-button ng-click="setup.accept()">Pelaa</md-button>
+    </section>
+</div>

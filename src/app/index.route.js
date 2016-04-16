@@ -11,11 +11,13 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'MainController',
       controllerAs: 'main'
     })
-    .state('navbar.about', {
-      url: '/about',
-      template: '<div>about</div>'
+    .state('navbar.setup', {
+      url: '/setup',
+      templateUrl: 'app/setup/setup.html',
+      controller: 'SetupController',
+      controllerAs: 'setup'
     })
     ;
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/home');
 }

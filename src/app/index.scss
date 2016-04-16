@@ -52,6 +52,11 @@ html {
   flex-direction: row;
 }
 
+body {
+  max-width:1400px;
+  margin:auto;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
