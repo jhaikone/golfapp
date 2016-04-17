@@ -1,14 +1,37 @@
 <div>
-    <section>
-      <div ng-repeat="index in setup.maxPlayers track by $index">
-        <md-input-container>
-          <label>Pelaaja {{$index+1}}</label>
-          <input type="text" ng-model="setup.players[$index]">
-        </md-input-container>
-      </div>
-    </section>
+      <section>
 
-    <section>
-      <md-button ng-click="setup.accept()">Pelaa</md-button>
-    </section>
+        <div layout="row">
+
+          <md-input-container>
+            <label>Kenttä</label>
+            <md-select ng-model="setup.model.course" placeholder="Valitse kenttä" required>
+              <md-option ng-value="course" ng-repeat="course in setup.courses">{{ course.name }}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <md-input-container ng-if="setup.model.course">
+            <label>Tee</label>
+            <md-select ng-model="setup.model.tee" placeholder="Valitse tee">
+              <md-option ng-value="tee" ng-repeat="tee in setup.model.course.tees">{{ tee }}</md-option>
+            </md-select>
+          </md-input-container>
+
+        </div>
+
+      </section>
+
+      <section>
+          <div layout="row" ng-repeat="index in setup.maxPlayers track by $index">
+            <md-input-container>
+              <label>Pelaaja {{$index+1}}</label>
+              <input type="text" ng-model="setup.model.players[$index]">
+            </md-input-container>
+          </div>
+      </section>
+
+      <section>
+        <md-button class="md-fab md-primary" ng-click="setup.accept()">Pelaa</md-button>
+      </section>
+
 </div>

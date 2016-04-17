@@ -6,6 +6,7 @@ export class SetupController {
     this.CoursesMock = CoursesMock;
     this.$log = $log;
     this.courses = this.CoursesMock.getCourses();
+    this.model = {};
 
     this.maxPlayers = new Array(4);
     this.players = this.PlayersService.getPlayers();
@@ -13,8 +14,11 @@ export class SetupController {
 
   accept() {
     this.PlayersService.setPlayers(this.players);
-    this.$log.log('accepting', this.players);
+    this.$log.log('accepting', this.model.players);
     this.$log.log('courses', this.courses);
+    this.$log.log('chosen course', this.model.course);
+    this.$log.log('chosen tee', this.model.tee);
+    this.$log.log('model', this.model);
   }
 
 }
