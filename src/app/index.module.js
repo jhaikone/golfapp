@@ -11,6 +11,7 @@ import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service'
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 import { CoursesMock } from '../app/components/courses/courses.mock';
+import { GameService } from '../app/components/gameModes/game.service';
 
 angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngResource', 'ui.router', 'ngMaterial', 'toastr'])
   .constant('malarkey', malarkey)
@@ -21,6 +22,7 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .service('PlayersService', PlayersService)
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
+  .service('GameService', GameService)
   .service('CoursesMock', CoursesMock)
   .controller('MainController', MainController)
   .controller('SetupController', SetupController)

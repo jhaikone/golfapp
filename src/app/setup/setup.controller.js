@@ -1,11 +1,12 @@
 export class SetupController {
-  constructor (PlayersService, CoursesMock, $log) {
+  constructor (PlayersService, GameService, CoursesMock, $log) {
     'ngInject';
 
     this.PlayersService = PlayersService;
     this.CoursesMock = CoursesMock;
     this.$log = $log;
     this.courses = this.CoursesMock.getCourses();
+    this.gameModes = GameService.getModes();
     this.model = {};
 
     this.maxPlayers = new Array(4);

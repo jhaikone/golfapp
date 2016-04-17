@@ -1,11 +1,11 @@
-<div>
+<div class="setup">
       <section>
 
         <div layout="row">
 
           <md-input-container>
             <label>Kenttä</label>
-            <md-select ng-model="setup.model.course" placeholder="Valitse kenttä" required>
+            <md-select ng-model="setup.model.course" placeholder="Valitse">
               <md-option ng-value="course" ng-repeat="course in setup.courses">{{ course.name }}</md-option>
             </md-select>
           </md-input-container>
@@ -18,6 +18,15 @@
           </md-input-container>
 
         </div>
+
+      </section layout="row">
+        <md-input-container>
+          <label>Pelimuoto</label>
+          <md-select ng-model="setup.model.gameMode" placeholder="Valitse">
+            <md-option ng-value="mode" ng-repeat="mode in setup.gameModes">{{ mode.name }}</md-option>
+          </md-select>
+        </md-input-container>
+      <section>
 
       </section>
 

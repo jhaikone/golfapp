@@ -99,6 +99,94 @@ const COURSES = [
         }
       }
     ]
+  },
+  {
+    id: 24664,
+    name: "Kytäjä",
+    tees: ["a","b","c"],
+    holes: [
+      {
+        hole: 1,
+        par: 4,
+        distances: {
+          a: 284,
+          b: 229,
+          c: 194
+        }
+      },
+      {
+        hole: 2,
+        par: 3,
+        distances: {
+          a: 154,
+          b: 131,
+          c: 119
+        }
+      },
+      {
+        hole: 3,
+        par: 5,
+        distances: {
+          a: 477,
+          b: 381,
+          c: 332
+        }
+      },
+      {
+        hole: 4,
+        par: 5,
+        distances: {
+          a: 447,
+          b: 384,
+          c: 311
+        }
+      },
+      {
+        hole: 5,
+        par: 3,
+        distances: {
+          a: 110,
+          b: 102,
+          c: 78
+        }
+      },
+      {
+        hole: 6,
+        par: 5,
+        distances: {
+          a: 448,
+          b: 362,
+          c: 362
+        }
+      },
+      {
+        hole: 7,
+        par: 4,
+        distances: {
+          a: 339,
+          b: 282,
+          c: 237
+        }
+      },
+      {
+        hole: 8,
+        par: 3,
+        distances: {
+          a: 141,
+          b: 105,
+          c: 95
+        }
+      },
+      {
+        hole: 9,
+        par: 4,
+        distances: {
+          a: 345,
+          b: 300,
+          c: 267
+        }
+      }
+    ]
   }
 ];
 
