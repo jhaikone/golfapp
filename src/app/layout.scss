@@ -5,19 +5,12 @@
 // bower:scss
 // endbower
 
-md-input-container {
-  text-align: left;
-  width: 250px;
-  margin: 16px 0;
+.go-content {
+  margin: auto;
 }
 
-.two-inputs md-input-container {
-  &.large {
-    width: 180px;
-  }
-  &.small {
-    width: 70px;
-  }
+.go-padding {
+  padding: 16px;
 }
 
 /**

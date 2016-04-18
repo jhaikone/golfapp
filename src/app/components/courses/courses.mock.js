@@ -15,7 +15,11 @@ const COURSES = [
   {
     id: 25664,
     name: "Paloheinä",
-    tees: ["a","b","c"],
+    tees: [
+      {name:"a", metre: 2745},
+      {name:"b", metre: 2276},
+      {name:"c", metre: 1995}
+    ],
     holes: [
       {
         hole: 1,
