@@ -2,7 +2,7 @@
       <section>
         <md-input-container>
           <label>Kenttä</label>
-          <md-select ng-model="setup.model.course" ng-change="setup.setDefaultTee(setup.model.course)">
+          <md-select ng-model="setup.game.course" ng-change="setup.setDefaultTee(setup.game.course)">
             <md-option ng-value="course" ng-repeat="course in setup.courses">{{ course.name }}</md-option>
           </md-select>
         </md-input-container>
@@ -11,8 +11,8 @@
       <section>
         <md-input-container>
           <label>Aloitustii</label>
-          <md-select ng-model="setup.model.tee">
-            <md-option ng-value="tee" ng-repeat="tee in setup.model.course.tees">{{ tee.name + "-> " + tee.metre + "m" }}</md-option>
+          <md-select ng-model="setup.game.tee">
+            <md-option ng-value="tee" ng-repeat="tee in setup.game.course.tees">{{ tee.name + "-> " + tee.metre + "m" }}</md-option>
           </md-select>
         </md-input-container>
       </section>
@@ -20,21 +20,21 @@
       <section>
         <md-input-container>
           <label>Pelimuoto</label>
-          <md-select ng-model="setup.model.gameMode">
-            <md-option value="setup.gameModes[0]" ng-value="mode" ng-repeat="mode in setup.gameModes">{{ mode.name }}</md-option>
+          <md-select ng-model="setup.game.mode">
+            <md-option ng-value="mode" ng-repeat="mode in setup.gameModes">{{ mode.name }}</md-option>
           </md-select>
         </md-input-container>
       </section>
 
       <section>
-          <div class="two-inputs" ng-repeat="index in setup.maxPlayers track by $index">
+          <div class="two-inputs" ng-repeat="index in setup.players track by $index">
             <md-input-container class="large">
               <label>Pelaaja {{$index+1}}</label>
-              <input type="text" ng-model="setup.model.players[$index].name" ng-blur="setup.setDefaultHCP(setup.model.players[$index])">
+              <input type="text" ng-model="setup.players[$index].name" ng-blur="setup.setDefaultHCP(setup.players[$index])">
             </md-input-container>
             <md-input-container class="small">
               <label>Tasoitus</label>
-              <input type="number" ng-model="setup.model.players[$index].hcp">
+              <input type="number" ng-model="setup.players[$index].hcp" max="54">
             </md-input-container>
           </div>
       </section>

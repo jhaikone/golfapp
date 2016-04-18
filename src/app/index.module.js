@@ -12,6 +12,7 @@ import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 import { CoursesMock } from '../app/components/courses/courses.mock';
 import { GameService } from '../app/components/gameModes/game.service';
+import { GameController } from './game/game.controller';
 
 angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngResource', 'ui.router', 'ngMaterial', 'toastr'])
   .constant('malarkey', malarkey)
@@ -25,6 +26,7 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .service('GameService', GameService)
   .service('CoursesMock', CoursesMock)
   .controller('MainController', MainController)
+  .controller('GameController', GameController)
   .controller('SetupController', SetupController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective);

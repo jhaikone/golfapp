@@ -1,42 +1,38 @@
 export class SetupController {
-  constructor (PlayersService, GameService, CoursesMock, $log) {
+  constructor (PlayersService, GameService, CoursesMock, $log, $state) {
     'ngInject';
 
     this.PlayersService = PlayersService;
+    this.GameService = GameService;
     this.CoursesMock = CoursesMock;
     this.$log = $log;
-    this.courses = this.CoursesMock.getCourses();
-    this.gameModes = GameService.getModes();
-    this.model = {
-      gameMode: this.gameModes[0]
-    };
+    this.$state = $state;
 
-    this.maxPlayers = new Array(4);
+    this.courses = this.CoursesMock.getCourses();
+    this.gameModes = this.GameService.getModes();
+
     this.players = this.PlayersService.getPlayers();
+    this.game = this.GameService.getGameSetup();
   }
 
   accept() {
+    this.GameService.setGameSetup(this.game);
     this.PlayersService.setPlayers(this.players);
-    this.$log.log('accepting', this.model.players);
-    this.$log.log('courses', this.courses);
-    this.$log.log('chosen course', this.model.course);
-    this.$log.log('chosen tee', this.model.tee);
-    this.$log.log('model', this.model);
+    this.$state.go('navbar.game');
   }
 
   setDefaultTee(course) {
     if(course && course.tees) {
-      this.model.tee = course.tees[course.tees.length-1];
+      this.game.tee = course.tees[course.tees.length-1];
     }
   }
 
   setDefaultHCP(player) {
     if(player && player.name !== '') {
       player.hcp = 36;
-    } else {
+    } else if(player) {
       player.hcp = null;
     }
   }
-
 
 }

@@ -1,6 +1,6 @@
 export class PlayersService {
   constructor() {
-    this.players = [];
+    this.players = new Array(4);
   }
 
   getPlayers() {
