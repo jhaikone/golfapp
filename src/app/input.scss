@@ -11,6 +11,20 @@ md-input-container {
   margin: 16px 0;
 }
 
+.go-button-right {
+  position: absolute;
+  right:0;
+  margin-right:20px;
+  color:white;
+}
+
+button {
+
+  span {
+    color: white;
+  }
+}
+
 .two-inputs md-input-container {
   &.large {
     width: 176px;

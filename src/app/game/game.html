@@ -1,3 +1,17 @@
-<div class="">
-  game on
+<div class="go-content">
+
+  <section>
+      <go-switch label="'Pallo taskuun'" value="game.noResult"></go-switch>
+  </section>
+
+  <section ng-hide="game.noResult">
+    <div class="">
+        
+    </div>
+  </section>
+
+  <section>
+      <md-button class="md-fab md-primary go-button-right" ng-click="game.accept()">testi</md-button>
+  </section>
+
 </div>

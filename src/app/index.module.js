@@ -9,7 +9,9 @@ import { PlayersService } from '../app/components/players/players.service';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
+import { GoHeaderDirective } from '../app/components/goHeader/go-header.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
+import { GoSwitch } from '../app/components/goSwitch/go-switch.directive';
 import { CoursesMock } from '../app/components/courses/courses.mock';
 import { GameService } from '../app/components/gameModes/game.service';
 import { GameController } from './game/game.controller';
@@ -19,6 +21,12 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('light-green')
+      .accentPalette('blue-grey')
+      .warnPalette('red');
+  })
   .run(runBlock)
   .service('PlayersService', PlayersService)
   .service('githubContributor', GithubContributorService)
@@ -29,4 +37,6 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .controller('GameController', GameController)
   .controller('SetupController', SetupController)
   .directive('acmeNavbar', NavbarDirective)
+  .directive('goHeader', GoHeaderDirective)
+  .directive('goSwitch', GoSwitch)
   .directive('acmeMalarkey', MalarkeyDirective);

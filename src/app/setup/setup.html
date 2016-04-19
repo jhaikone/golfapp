@@ -1,45 +1,47 @@
+<go-header middle="'Peliasetukset'"></go-header>
+
 <div class="go-content setup">
-      <section>
-        <md-input-container>
-          <label>Kenttä</label>
-          <md-select ng-model="setup.game.course" ng-change="setup.setDefaultTee(setup.game.course)">
-            <md-option ng-value="course" ng-repeat="course in setup.courses">{{ course.name }}</md-option>
-          </md-select>
-        </md-input-container>
-      </section>
+    <section>
+      <md-input-container>
+        <label>Kenttä</label>
+        <md-select ng-model="setup.game.course" ng-change="setup.setDefaultTee(setup.game.course)">
+          <md-option ng-value="course" ng-repeat="course in setup.courses">{{ course.name }}</md-option>
+        </md-select>
+      </md-input-container>
+    </section>
 
-      <section>
-        <md-input-container>
-          <label>Aloitustii</label>
-          <md-select ng-model="setup.game.tee">
-            <md-option ng-value="tee" ng-repeat="tee in setup.game.course.tees">{{ tee.name + "-> " + tee.metre + "m" }}</md-option>
-          </md-select>
-        </md-input-container>
-      </section>
+    <section>
+      <md-input-container>
+        <label>Aloitustii</label>
+        <md-select ng-model="setup.game.tee">
+          <md-option ng-value="tee" ng-repeat="tee in setup.game.course.tees">{{ tee.name + "-> " + tee.metre + "m" }}</md-option>
+        </md-select>
+      </md-input-container>
+    </section>
 
-      <section>
-        <md-input-container>
-          <label>Pelimuoto</label>
-          <md-select ng-model="setup.game.mode">
-            <md-option ng-value="mode" ng-repeat="mode in setup.gameModes">{{ mode.name }}</md-option>
-          </md-select>
-        </md-input-container>
-      </section>
+    <section>
+      <md-input-container>
+        <label>Pelimuoto</label>
+        <md-select ng-model="setup.game.mode">
+          <md-option ng-value="mode" ng-repeat="mode in setup.gameModes">{{ mode.name }}</md-option>
+        </md-select>
+      </md-input-container>
+    </section>
 
-      <section>
-          <div class="two-inputs" ng-repeat="index in setup.players track by $index">
-            <md-input-container class="large">
-              <label>Pelaaja {{$index+1}}</label>
-              <input type="text" ng-model="setup.players[$index].name" ng-blur="setup.setDefaultHCP(setup.players[$index])">
-            </md-input-container>
-            <md-input-container class="small">
-              <label>Tasoitus</label>
-              <input type="number" ng-model="setup.players[$index].hcp" max="54">
-            </md-input-container>
-          </div>
-      </section>
+    <section>
+        <div class="two-inputs" ng-repeat="index in setup.players track by $index">
+          <md-input-container class="large">
+            <label>Pelaaja {{$index+1}}</label>
+            <input type="text" ng-model="setup.players[$index].name" ng-blur="setup.setDefaultHCP(setup.players[$index])">
+          </md-input-container>
+          <md-input-container class="small">
+            <label>Tasoitus</label>
+            <input type="number" ng-model="setup.players[$index].hcp" max="54">
+          </md-input-container>
+        </div>
+    </section>
 
-      <section>
-          <md-button class="md-fab md-primary go-play" ng-click="setup.accept()">Pelaa</md-button>
-      </section>
+    <section>
+        <md-button class="md-fab md-primary go-button-right" ng-click="setup.accept()"><span>Pelaa</span></md-button>
+    </section>
 </div>

@@ -4,14 +4,9 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('navbar', {
         abstract: true,
         template: `
-        <div>
-          <header>
-            <acme-navbar creation-date="main.creationDate"></acme-navbar>
-          </header>
           <div class="span12 ui-view-container">
             <div class="well" ui-view></div>
           </div>
-        </div>
         `
     })
     .state('navbar.home', {
