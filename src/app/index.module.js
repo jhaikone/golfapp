@@ -10,6 +10,7 @@ import { GithubContributorService } from '../app/components/githubContributor/gi
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { GoHeaderDirective } from '../app/components/goHeader/go-header.directive';
+import { GoStrokeInputDirective } from '../app/components/goStrokeInput/go-stroke-input.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 import { GoSwitch } from '../app/components/goSwitch/go-switch.directive';
 import { CoursesMock } from '../app/components/courses/courses.mock';
@@ -39,4 +40,5 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .directive('acmeNavbar', NavbarDirective)
   .directive('goHeader', GoHeaderDirective)
   .directive('goSwitch', GoSwitch)
+  .directive('goStrokeInput', GoStrokeInputDirective)
   .directive('acmeMalarkey', MalarkeyDirective);

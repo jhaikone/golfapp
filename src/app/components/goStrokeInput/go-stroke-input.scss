@@ -1,0 +1,28 @@
+/**
+ *  Do not remove the comment below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+.stroke-number-container {
+  width: 100%;
+
+  .stroke-number {
+    width:32px;
+    text-align: center;
+  }
+}
+
+
+
+.stroke-buttons-container {
+  display: inherit;
+}
+
+/**
+ *  Do not remove the comment below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector

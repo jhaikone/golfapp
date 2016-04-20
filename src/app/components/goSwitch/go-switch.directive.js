@@ -8,7 +8,7 @@ export function GoSwitch() {
         value: '='
     },
     template: `
-    <md-toolbar class="go-switch">
+    <md-toolbar class="go-custom">
       <div class="md-toolbar-tools">
           <span class="go-text-color">{{label}}</span>
           <span flex></span>

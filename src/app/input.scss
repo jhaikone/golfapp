@@ -11,6 +11,14 @@ md-input-container {
   margin: 16px 0;
 }
 
+.go-custom {
+    background-color: transparent !important;
+
+    .go-text-color {
+      color: rgba(0, 0, 0, 0.87);
+    }
+}
+
 .go-button-right {
   position: absolute;
   right:0;

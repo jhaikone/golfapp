@@ -1,5 +1,5 @@
 .go-header {
-
+  display:flex;
   background: rgb(139,195,74);
   padding: 10px;
   width: 100%;
@@ -10,13 +10,16 @@
 
   .text-left {
     text-align: left;
+    width:33%;
   }
 
   .text-middle {
     text-align: center;
+    width:33%;
   }
 
   .text-right {
     text-align: right;
+    width:33%;
   }
 }
