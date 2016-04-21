@@ -1,25 +1,31 @@
 .go-header {
-  display:flex;
+
   background: rgb(139,195,74);
   padding: 10px;
   width: 100%;
 
-  span {
-    color: white;
-  }
+    .menu-content {
+        display:flex;
+        max-width:300px;
+        margin:auto;
 
-  .text-left {
-    text-align: left;
-    width:33%;
-  }
+        span {
+            color: white;
+        }
 
-  .text-middle {
-    text-align: center;
-    width:33%;
-  }
+        .text-left {
+            text-align: left;
+            width:33%;
+        }
 
-  .text-right {
-    text-align: right;
-    width:33%;
-  }
+        .text-middle {
+            text-align: center;
+            width:33%;
+        }
+
+        .text-right {
+            text-align: right;
+            width:33%;
+        }
+    }
 }

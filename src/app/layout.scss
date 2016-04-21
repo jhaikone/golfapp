@@ -6,6 +6,10 @@
 // endbower
 
 .go-content {
+    span {
+          font-size: 16px;
+    }
+
   position: relative;
   text-align: center;
   width: 300px;
@@ -14,6 +18,10 @@
 
 .go-padding {
   padding: 16px;
+}
+
+.go-border-bottom {
+    border-bottom: 1px solid #ECECEC;
 }
 
 /**

@@ -5,7 +5,8 @@ export class GameController {
 
     this.noResult = false;
     this.gameData = GameService.getGameSetup();
-    //this.holes = this.gameData.course.holes;
+    console.log(this.gameData);
+    this.holes = this.gameData.course.holes;
     console.log(this.gameData);
     this.index = 0;
   }
@@ -15,18 +16,16 @@ export class GameController {
   }
 
   getPar() {
-    return 'Par 4';
-    //return 'Par ' + this._getHole().par;
+    return 'Par ' + this.getHole().par;
   }
 
-  _getHole() {
+  getHole() {
     return this.holes[this.index];
   }
 
   getHoleHeader() {
     let holeNumber = this.index +1;
-    return 'Väylä 1';
-    //return 'Väylä' + ' ' + holeNumber;
+    return 'Väylä' + ' ' + holeNumber;
   }
 
 }

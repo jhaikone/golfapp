@@ -1,18 +1,64 @@
 <go-header left="game.getHoleHeader()" middle="game.getPar()"></go-header>
 <div class="go-content">
 
-  <section>
-      <go-switch label="'Pallo taskuun'" value="game.noResult"></go-switch>
-  </section>
+    <section>
+        <go-switch label="'Pallo taskuun'" value="game.noResult"></go-switch>
+    </section>
 
-  <section ng-hide="game.noResult">
+    <hr>
 
-  <go-stroke-input></go-stroke-input>
+    <section ng-hide="game.noResult">
 
-  </section>
+        <go-stroke-input
+                        name="strokes"
+                        class="go-border-bottom"
+                        stroke-label="'Lyönnit'"
+                        max-strokes="20"
+                        min-strokes="1"
+                        default-strokes="game.getHole().par"
+                        primary="true"
+                        ng-model="game.model.strokes"
+        >
+        </go-stroke-input>
 
-  <section>
+        <go-stroke-input
+                        name="putts"
+                        stroke-label="'Putteja'"
+                        max-strokes="20"
+                        min-strokes="0"
+                        default-strokes="2",
+                        ng-model="game.model.putts"
+        >
+        </go-stroke-input>
+
+        <go-stroke-input
+                        name="sandStrokes"
+                        stroke-label="'Hiekkalyönnit'"
+                        max-strokes="20"
+                        min-strokes="0"
+                        default-strokes="0",
+                        ng-model="game.model.sandStrokes"
+        >
+        </go-stroke-input>
+
+        <go-stroke-input
+                        name="penalties"
+                        stroke-label="'Rangaistuksia'"
+                        max-strokes="20"
+                        min-strokes="0"
+                        default-strokes="0",
+                        ng-model="game.model.penalties"
+        >
+        </go-stroke-input>
+
+            <!-- putteja, hiekkalyöntejä, rangaistuksia -->
+
+            <!-- väyläosumat -->
+            <!--GIR, Sand Saves, Scrambling -->
+    </section>
+
+    <section>
       <md-button class="md-fab md-primary go-button-right" ng-click="game.accept()">testi</md-button>
-  </section>
+    </section>
 
 </div>

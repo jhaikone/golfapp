@@ -4,7 +4,12 @@ const GAME_MODES = [
 ];
 
 export class GameService {
-  constructor() {
+  constructor(CoursesMock) {
+    'ngInject'
+
+    //TODO: remove this when done
+    this.CoursesMock = CoursesMock;
+
     this.gameSetup = {
       mode: GAME_MODES[0]
     }
@@ -19,6 +24,10 @@ export class GameService {
   }
 
   getGameSetup() {
+    if(this.gameSetup.course) {
+      return this.gameSetup
+    }
+    this.gameSetup.course = this.CoursesMock.getCourses()[0];
     return this.gameSetup;
   }
 

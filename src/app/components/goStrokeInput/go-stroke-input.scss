@@ -5,19 +5,29 @@
 // bower:scss
 // endbower
 
-.stroke-number-container {
-  width: 100%;
+.go-stroke-input {
+    text-align: right;
 
-  .stroke-number {
-    width:32px;
-    text-align: center;
-  }
-}
+    .stroke-number-container {
+      width: 100%;
 
+      .stroke-number {
+        font-size: 26px;
+        margin-right: 5px;
 
+        &.md-primary {
+            color: rgb(139,195,74);
+            font-weight: bold;
+            font-size: 40px;
+            margin-right: 2px;
+        }
 
-.stroke-buttons-container {
-  display: inherit;
+      }
+    }
+
+    .stroke-buttons-container {
+      display: inherit;
+    }
 }
 
 /**
