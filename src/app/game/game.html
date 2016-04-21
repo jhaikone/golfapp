@@ -1,5 +1,5 @@
 <go-header left="game.getHoleHeader()" middle="game.getPar()"></go-header>
-<div class="go-content">
+<div class="game go-content">
 
     <section>
         <go-switch label="'Pallo taskuun'" value="game.noResult"></go-switch>
@@ -21,6 +21,28 @@
         >
         </go-stroke-input>
 
+        <md-toolbar class="go-custom go-padding-top">
+            <div class="md-toolbar-tools">
+                <span>Avaus </span>
+                <span flex></span>
+                <div ng-click="game.clearDrive(); game.model.toLeft = true">
+                    <i  class="fa fa-mars fa-flip-horizontal drive"
+                        ng-class="{'go-active': game.model.toLeft}">
+                    </i>
+                </div>
+                <div ng-click="game.clearDrive(); game.model.fairway = true">
+                    <i
+                        class="fa fa-mars fa-rotate-45 drive"
+                        ng-class="{'go-active': game.model.fairway}">
+                    </i>
+                </div>
+                <div ng-click="game.clearDrive(); game.model.toRight = true">
+                    <i class="fa fa-mars drive" ng-class="{'go-active': game.model.toRight}"></i>
+                </div>
+
+            </div>
+        </md-toolbar>
+
         <go-stroke-input
                         name="putts"
                         stroke-label="'Putteja'"
@@ -36,7 +58,7 @@
                         stroke-label="'Hiekkalyönnit'"
                         max-strokes="20"
                         min-strokes="0"
-                        default-strokes="0",
+                        default-strokes="1",
                         ng-model="game.model.sandStrokes"
         >
         </go-stroke-input>
@@ -46,7 +68,7 @@
                         stroke-label="'Rangaistuksia'"
                         max-strokes="20"
                         min-strokes="0"
-                        default-strokes="0",
+                        default-strokes="1",
                         ng-model="game.model.penalties"
         >
         </go-stroke-input>

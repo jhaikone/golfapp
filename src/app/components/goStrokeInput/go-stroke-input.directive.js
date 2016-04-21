@@ -15,9 +15,11 @@ export function GoStrokeInputDirective() {
         <md-toolbar class="go-custom go-stroke-input">
           <div class="md-toolbar-tools">
               <span class="go-text-color">{{ctrl.label}}</span>
+
               <div class="stroke-number-container">
                 <span class="stroke-number" ng-class="{'md-primary': ctrl.primary}" ng-model="ngModel">{{ctrl.$scope.ngModel}}<span>
               </div>
+                  <span flex> </span>
               <div class="stroke-buttons-container">
               <md-button class="md-fab md-mini" ng-click="ctrl.decrease()">-</md-button>
               <md-button class="md-fab md-mini" ng-click="ctrl.increase()">+</md-button>

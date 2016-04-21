@@ -20,8 +20,20 @@
   padding: 16px;
 }
 
+.go-padding-top {
+    padding-top: 16px;
+}
+
 .go-border-bottom {
     border-bottom: 1px solid #ECECEC;
+}
+
+.fa-rotate-45 {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 /**

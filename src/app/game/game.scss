@@ -1,0 +1,26 @@
+/**
+ *  Do not remove the comment below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+.game {
+
+    .drive {
+        color: rgb(139,195,74);
+        padding: 15px;
+        font-size: 30px;
+    }
+
+    .go-active {
+        color: green;
+    }
+}
+
+/**
+ *  Do not remove the comment below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
