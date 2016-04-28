@@ -3,19 +3,25 @@
 import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
+
 import { MainController } from './main/main.controller';
 import { SetupController } from './setup/setup.controller';
-import { PlayersService } from '../app/components/players/players.service';
+
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
-import { GoHeaderDirective } from '../app/components/goHeader/go-header.directive';
-import { GoStrokeInputDirective } from '../app/components/goStrokeInput/go-stroke-input.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
-import { GoSwitch } from '../app/components/goSwitch/go-switch.directive';
-import { CoursesMock } from '../app/components/courses/courses.mock';
-import { GameService } from '../app/components/gameModes/game.service';
+
+import { PlayersService } from '../app/components/services/players/players.service';
+import { GameService } from '../app/components/services/game/game.service';
+
+import { GoHeaderDirective } from '../app/components/directives/goHeader/go-header.directive';
+import { GoStrokeInputDirective } from '../app/components/directives/goStrokeInput/go-stroke-input.directive';
+import { GoSwitch } from '../app/components/directives/goSwitch/go-switch.directive';
+
 import { GameController } from './game/game.controller';
+
+import { CoursesMock } from '../app/components/courses/courses.mock';
 
 angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngResource', 'ui.router', 'ngMaterial', 'toastr'])
   .constant('malarkey', malarkey)
@@ -29,16 +35,21 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
       .warnPalette('red');
   })
   .run(runBlock)
-  .service('PlayersService', PlayersService)
-  .service('githubContributor', GithubContributorService)
-  .service('webDevTec', WebDevTecService)
-  .service('GameService', GameService)
-  .service('CoursesMock', CoursesMock)
   .controller('MainController', MainController)
   .controller('GameController', GameController)
   .controller('SetupController', SetupController)
+
+  .service('githubContributor', GithubContributorService)
+  .service('webDevTec', WebDevTecService)
+
   .directive('acmeNavbar', NavbarDirective)
+  .directive('acmeMalarkey', MalarkeyDirective)
+
+  .service('PlayersService', PlayersService)
+  .service('GameService', GameService)
+
   .directive('goHeader', GoHeaderDirective)
   .directive('goSwitch', GoSwitch)
   .directive('goStrokeInput', GoStrokeInputDirective)
-  .directive('acmeMalarkey', MalarkeyDirective);
+
+  .service('CoursesMock', CoursesMock);
