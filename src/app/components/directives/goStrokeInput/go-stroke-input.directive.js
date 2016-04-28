@@ -17,7 +17,7 @@ export function GoStrokeInputDirective() {
               <span class="go-text-color">{{ctrl.label}}</span>
 
               <div class="stroke-number-container">
-                <span class="stroke-number" ng-class="{'md-primary': ctrl.primary}" ng-model="ngModel">{{ctrl.$scope.ngModel}}<span>
+                <span ng-show="ngModel" class="stroke-number" ng-class="{'md-primary': ctrl.primary}" ng-model="ngModel">{{ctrl.$scope.ngModel}}<span>
               </div>
                   <span flex> </span>
               <div class="stroke-buttons-container">
@@ -51,18 +51,29 @@ class GoStrokeInputController {
   }
 
   decrease() {
-    if(this.$scope.ngModel === undefined || this.$scope.ngModel === null) {
-      this.$scope.ngModel = this.defaultStrokes;
-  } else if(this.$scope.ngModel > this.minStrokes) {
+    this._initModel();
+
+    if (this.$scope.ngModel > this.minStrokes) {
       this.$scope.ngModel = this.$scope.ngModel - 1;
     }
   }
 
   increase() {
-    if(this.$scope.ngModel === undefined || this.$scope.ngModel === null) {
-      this.$scope.ngModel = this.defaultStrokes;
-  } else if(this.$scope.ngModel < this.maxStrokes) {
+    this._initModel(true);
+
+    if (this.$scope.ngModel < this.maxStrokes) {
       this.$scope.ngModel = this.$scope.ngModel + 1;
     }
   }
+
+  /**
+   * default value is par if plus button is pressed
+   * default value is par minus one if minus is pressed
+   */
+  _initModel(isIncreasing) {
+    if(angular.isUndefined(this.$scope.ngModel)) {
+      this.$scope.ngModel = isIncreasing ? this.defaultStrokes-1 : this.defaultStrokes;
+    }
+  }
+
 }

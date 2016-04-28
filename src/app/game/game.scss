@@ -16,6 +16,67 @@
     .go-active {
         color: green;
     }
+
+    .nav-container {
+      width: 50%;
+    }
+
+    .player-icon {
+      outline: none;
+      border: none;
+    }
+
+    .players-count-1 {
+      width: 100%;
+    }
+
+    .players-count-2 {
+      width: 50%;
+    }
+
+    .players-count-3 {
+      width: 33%;
+    }
+
+    .players-count-4 {
+      width: 25%;
+    }
+
+    .score-content {
+      min-height: 370px;
+    }
+
+    .slide {
+      opacity: 1;
+      display:block;
+
+      &.slide.ng-enter {
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+        transform:translateX(600px);
+      }
+
+      &.slide.ng-leave {
+        opacity:0;
+      }
+
+      &.slide.ng-enter.ng-enter-active {
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+        transform:translateX(0);
+      }
+
+      &.slide.ng-leave.ng-leave-active {
+        transition: all 0.4s ease-in-out;
+        opacity:1;
+      }
+
+    }
+
 }
 
 /**

@@ -1,86 +1,109 @@
 <go-header left="game.getHoleHeader()" middle="game.getPar()"></go-header>
 <div class="game go-content">
 
-    <section>
-        <go-switch label="'Pallo taskuun'" value="game.noResult"></go-switch>
-    </section>
+    <div class="go-padding" layout="row" layout-wrap>
+      <div ng-repeat="icon in game.totalPlayers track by $index" class="players players-count-{{game.playersCount}}">
+        <div ng-class="{'primary-text': $index === game.playerIndex}">
+          <i ng-click="game.goToPlayer($index)" class="fa fa-user fa-2x player-icon"></i>
+        </div>
+        {{game.totalPlayers[$index].name}}
 
-    <hr>
 
-    <section ng-hide="game.noResult">
+      </div>
+    </div>
 
-        <go-stroke-input
-                        name="strokes"
-                        class="go-border-bottom"
-                        stroke-label="'Lyönnit'"
-                        max-strokes="20"
-                        min-strokes="1"
-                        default-strokes="game.getHole().par"
-                        primary="true"
-                        ng-model="game.model.strokes"
-        >
-        </go-stroke-input>
 
-        <md-toolbar class="go-custom go-padding-top">
-            <div class="md-toolbar-tools">
-                <span>Avaus </span>
-                <span flex></span>
-                <div ng-click="game.clearDrive(); game.model.toLeft = true">
-                    <i  class="fa fa-mars fa-flip-horizontal drive"
-                        ng-class="{'go-active': game.model.toLeft}">
-                    </i>
-                </div>
-                <div ng-click="game.clearDrive(); game.model.fairway = true">
-                    <i
-                        class="fa fa-mars fa-rotate-45 drive"
-                        ng-class="{'go-active': game.model.fairway}">
-                    </i>
-                </div>
-                <div ng-click="game.clearDrive(); game.model.toRight = true">
-                    <i class="fa fa-mars drive" ng-class="{'go-active': game.model.toRight}"></i>
-                </div>
+    <div ng-repeat="player in game.players" class="slide score-content">
+      <section>
+          <go-switch label="'Pallo taskuun'" ng-model="game.model.players[game.playerIndex].noResult"></go-switch>
+      </section>
 
-            </div>
-        </md-toolbar>
+      <hr>
 
-        <go-stroke-input
-                        name="putts"
-                        stroke-label="'Putteja'"
-                        max-strokes="20"
-                        min-strokes="0"
-                        default-strokes="2",
-                        ng-model="game.model.putts"
-        >
-        </go-stroke-input>
+      <section ng-hide="game.model.players[game.playerIndex].noResult">
 
-        <go-stroke-input
-                        name="sandStrokes"
-                        stroke-label="'Hiekkalyönnit'"
-                        max-strokes="20"
-                        min-strokes="0"
-                        default-strokes="1",
-                        ng-model="game.model.sandStrokes"
-        >
-        </go-stroke-input>
+          <go-stroke-input
+                          name="strokes"
+                          class="go-border-bottom"
+                          stroke-label="'Lyönnit'"
+                          max-strokes="20"
+                          min-strokes="1"
+                          default-strokes="game.getHole().par"
+                          primary="true"
+                          ng-model="game.model.players[game.playerIndex].strokes"
+          >
+          </go-stroke-input>
 
-        <go-stroke-input
-                        name="penalties"
-                        stroke-label="'Rangaistuksia'"
-                        max-strokes="20"
-                        min-strokes="0"
-                        default-strokes="1",
-                        ng-model="game.model.penalties"
-        >
-        </go-stroke-input>
+          <md-toolbar class="go-custom go-padding-top">
+              <div class="md-toolbar-tools">
+                  <span>Avaus </span>
+                  <span flex></span>
+                  <div ng-click="game.clearDrive(); game.model.players[game.playerIndex].toLeft = true">
+                      <i  class="fa fa-mars fa-flip-horizontal drive"
+                          ng-class="{'go-active': game.model.players[game.playerIndex].toLeft}">
+                      </i>
+                  </div>
+                  <div ng-click="game.clearDrive(); game.model.players[game.playerIndex].fairway = true">
+                      <i
+                          class="fa fa-mars fa-rotate-45 drive"
+                          ng-class="{'go-active': game.model.players[game.playerIndex].fairway}">
+                      </i>
+                  </div>
+                  <div ng-click="game.clearDrive(); game.model.players[game.playerIndex].toRight = true">
+                      <i class="fa fa-mars drive" ng-class="{'go-active': game.model.players[game.playerIndex].toRight}"></i>
+                  </div>
 
-            <!-- putteja, hiekkalyöntejä, rangaistuksia -->
+              </div>
+          </md-toolbar>
 
-            <!-- väyläosumat -->
-            <!--GIR, Sand Saves, Scrambling -->
-    </section>
+          <go-stroke-input
+                          name="putts"
+                          stroke-label="'Putteja'"
+                          max-strokes="20"
+                          min-strokes="0"
+                          default-strokes="2",
+                          ng-model="game.model.players[game.playerIndex].putts"
+          >
+          </go-stroke-input>
 
-    <section>
-      <md-button class="md-fab md-primary go-button-right" ng-click="game.accept()">testi</md-button>
+          <go-stroke-input
+                          name="sandStrokes"
+                          stroke-label="'Hiekkalyönnit'"
+                          max-strokes="20"
+                          min-strokes="0"
+                          default-strokes="1",
+                          ng-model="game.model.players[game.playerIndex].sandStrokes"
+          >
+          </go-stroke-input>
+
+          <go-stroke-input
+                          name="penalties"
+                          stroke-label="'Rangaistuksia'"
+                          max-strokes="20"
+                          min-strokes="0"
+                          default-strokes="1",
+                          ng-model="game.model.players[game.playerIndex].penalties"
+          >
+          </go-stroke-input>
+
+          <!-- TODO: GIR, Sand Saves, Scrambling -->
+      </section>
+
+    </div>
+
+
+    <div class="go-padding" layout="row" layout-wrap>
+      <div class="nav-container text-left">
+          <i ng-click="game.previousPlayer()" class="fa fa-arrow-left text-left"></i>
+      </div>
+      <div class="nav-container text-right">
+         <i ng-click="game.nextPlayer()" class="fa fa-arrow-right text-right"></i>
+      </div>
+
+    </div>
+
+    <section class="go-padding">
+      <md-button class="md-primary md-raised" ng-click="game.accept()">Seuraava reikä</md-button>
     </section>
 
 </div>
