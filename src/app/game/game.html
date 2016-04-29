@@ -1,5 +1,5 @@
 <go-header left="game.getHoleHeader()" middle="game.getPar()"></go-header>
-<div class="game go-content">
+<div class="game go-content background player-{{game.playerIndex+1}}">
 
     <div class="go-padding" layout="row" layout-wrap>
       <div ng-repeat="icon in game.totalPlayers track by $index" class="players players-count-{{game.playersCount}}">
@@ -61,7 +61,7 @@
                           stroke-label="'Putteja'"
                           max-strokes="20"
                           min-strokes="0"
-                          default-strokes="2",
+                          default-strokes="2"
                           ng-model="game.model.players[game.playerIndex].putts"
           >
           </go-stroke-input>
@@ -71,7 +71,7 @@
                           stroke-label="'Hiekkalyönnit'"
                           max-strokes="20"
                           min-strokes="0"
-                          default-strokes="1",
+                          default-strokes="1"
                           ng-model="game.model.players[game.playerIndex].sandStrokes"
           >
           </go-stroke-input>

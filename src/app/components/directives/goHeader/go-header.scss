@@ -1,31 +1,37 @@
 .go-header {
 
   background: rgb(139,195,74);
-  padding: 10px;
+  max-width: 450px;
+  margin: 0 auto;
   width: 100%;
+  padding: 1px;
 
     .menu-content {
-        display:flex;
-        max-width:300px;
-        margin:auto;
+      padding: 10px;
+      display:flex;
+      flex-direction: row;
+      max-width: 450px;
+      width: 100%;
+      align-items: stretch;
+      text-align: center;
 
         span {
             color: white;
         }
 
         .text-left {
-            text-align: left;
-            width:33%;
+          order: 1;
+          flex: 1;
         }
 
         .text-middle {
-            text-align: center;
-            width:33%;
+          order: 2;
+          flex: 1;
         }
 
         .text-right {
-            text-align: right;
-            width:33%;
+          order: 3;
+          flex: 1;
         }
     }
 }

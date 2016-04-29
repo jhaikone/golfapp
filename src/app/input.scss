@@ -11,6 +11,10 @@ md-input-container {
   margin: 16px 0;
 }
 
+md-switch {
+  padding: 35px 80px;
+}
+
 .md-track-ticks canvas { display: none; }
 
 .go-custom {
@@ -33,14 +37,6 @@ button {
   span {
     color: white;
   }
-}
-
-.remove {
-    width: 300px;
-    overflow: hidden;
-    margin: auto;
-    padding: 29px 20px;
-    height: 75px;
 }
 
 .two-inputs md-input-container {

@@ -5,6 +5,30 @@
 // bower:scss
 // endbower
 
+.background {
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+
+  &.player-1 {
+    background: linear-gradient(141deg, #F4FFF0 0%, #fff 50%, #F4FFF0 60%);
+  }
+
+  &.player-2 {
+    background: linear-gradient(141deg, #F0F1FF 0%, #fff 50%, #F0F1FF 60%);
+  }
+
+  &.player-3 {
+    background: linear-gradient(141deg, #FFFAE7 0%, #fff 50%, #FFFAE7 60%);
+  }
+
+  &.player-4 {
+    background: linear-gradient(141deg, #FFF0F0 0%, #fff 50%, #FFF0F0 60%);
+  }
+}
+
+
 .game {
 
     .drive {
@@ -43,7 +67,7 @@
     }
 
     .score-content {
-      min-height: 370px;
+      height: 550px;
     }
 
     .slide {

@@ -21,8 +21,8 @@ export function GoStrokeInputDirective() {
               </div>
                   <span flex> </span>
               <div class="stroke-buttons-container">
-              <md-button class="md-fab md-mini" ng-click="ctrl.decrease()">-</md-button>
-              <md-button class="md-fab md-mini" ng-click="ctrl.increase()">+</md-button>
+              <md-button class="md-fab md" ng-click="ctrl.decrease()">-</md-button>
+              <md-button class="md-fab md" ng-click="ctrl.increase()">+</md-button>
               </div>
           </div>
         </md-toolbar>
@@ -46,7 +46,7 @@ class GoStrokeInputController {
     this.maxStrokes = $scope.maxStrokes;
     this.minStrokes = $scope.minStrokes;
     this.defaultStrokes = $scope.defaultStrokes;
-
+    console.log('default', this.defaultStrokes)
     this.primary = $scope.primary;
   }
 
@@ -71,8 +71,10 @@ class GoStrokeInputController {
    * default value is par minus one if minus is pressed
    */
   _initModel(isIncreasing) {
-    if(angular.isUndefined(this.$scope.ngModel)) {
+        console.log('ngmodel', this.$scope.ngModel);
+    if(!this.$scope.ngModel) {
       this.$scope.ngModel = isIncreasing ? this.defaultStrokes-1 : this.defaultStrokes;
+
     }
   }
 

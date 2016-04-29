@@ -54,9 +54,15 @@ html {
   flex-direction: row;
 }
 
-body {
-  max-width:1400px;
-  margin:auto;
+html,body
+{
+    width: 100%;
+    max-width:450px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    margin:auto;
 }
 
 .browsehappy {
