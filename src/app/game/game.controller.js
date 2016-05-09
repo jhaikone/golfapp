@@ -2,34 +2,24 @@ const fairway = 1;
 
 export class GameController {
 
-  constructor($scope, GameService, PlayersService, $log) {
+  constructor($scope, GameService, $log, $timeout) {
     'ngInject'
 
-    this.noResult = false;
-    this.gameData = GameService.getGameSetup();
-    this.totalPlayers = PlayersService.getPlayers();
-
-    this.players = this._copyPlayers(0);
+    this.GameService = GameService;
+    this.gameData = this.GameService.getGameSetup();
 
     this.holes = this.gameData.course.holes;
 
-    this.index = 0;
+    this.holeIndex = 0;
     this.playerIndex = 0;
 
-    this.playersCount = this.totalPlayers.length;
+    this.model = this.GameService.getHoleResults(0);
+    this.players = this._copyPlayers(0);
 
-    let objectPlayers = [];
-
-    this.totalPlayers.forEach( (player)=> {
-      objectPlayers.push({putts: 0, sandStrokes: 0, penalties: 0, noResult: false});
-    })
-
-    this.model = {
-      players: objectPlayers
-    };
+    this.playersCount = this.model.players.length;
+    this.$scope = $timeout;
 
     $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
-        console.log('changing');
         this.calculateStrokes();
     });
 
@@ -43,17 +33,21 @@ export class GameController {
   }
 
   nextPlayer() {
-    if(this.playerIndex < this.totalPlayers.length-1 ) {
+    if(this.playerIndex < this.model.players.length-1 ) {
       this.playerIndex = this.playerIndex + 1;
-      this.players = this._copyPlayers(this.playerIndex);
+    } else {
+      this.playerIndex = 0;
     }
+    this.players = this._copyPlayers(this.playerIndex);
   }
 
   previousPlayer() {
     if(this.playerIndex > 0 ) {
       this.playerIndex = this.playerIndex - 1;
-      this.players = this._copyPlayers(this.playerIndex);
+    } else {
+      this.playerIndex = this.model.players.length-1;
     }
+    this.players = this._copyPlayers(this.playerIndex);
   }
 
   goToPlayer(index) {
@@ -65,17 +59,14 @@ export class GameController {
       if(this.model.players[this.playerIndex].strokes < this._getTotal() ) {
           if(this.model.players[this.playerIndex].penalties) {
               this.model.players[this.playerIndex].penalties = this.model.players[this.playerIndex].penalties - 1;
-              this.reduceStrokes();
               return;
           }
           if(this.model.players[this.playerIndex].sandStrokes) {
               this.model.players[this.playerIndex].sandStrokes = this.model.players[this.playerIndex].sandStrokes - 1;
-              this.reduceStrokes();
               return;
           }
           if (this.model.players[this.playerIndex].putts) {
               this.model.players[this.playerIndex].putts = this.model.players[this.playerIndex].putts - 1;
-              this.reduceStrokes();
               return;
           }
       }
@@ -96,7 +87,35 @@ export class GameController {
   }
 
   accept() {
-    
+    this.GameService.addHoleResult(this.model, this.holeIndex);
+    this.holeIndex = this.GameService.playedHoles;
+    this._updateView();
+  }
+
+  finish() {
+    console.log('do finish here');
+  }
+
+  _updateView() {
+    this.playerIndex = 0;
+    this.model = this.GameService.getHoleResults(this.holeIndex);
+    this.players = [this.model.players[0]];
+  }
+
+  previousHole() {
+    if(this.holeIndex > 0) {
+      this.holeIndex--;
+      this._updateView();
+    }
+  }
+
+  nextHole() {
+    if(this.GameService.playedHoles > this.holeIndex) {
+      this.holeIndex++;
+      this._updateView();
+    }
+
+
   }
 
   getPar() {
@@ -104,18 +123,22 @@ export class GameController {
   }
 
   getHole() {
-    return this.holes[this.index];
+    return this.holes[this.holeIndex];
   }
 
   getHoleHeader() {
-    let holeNumber = this.index +1;
+    let holeNumber = this.holeIndex +1;
     return 'Väylä' + ' ' + holeNumber;
   }
 
   clearDrive() {
-      this.model.fairway = false;
-      this.model.toLeft = false;
-      this.model.toRight = false;
+      this.model.players[this.playerIndex].fairway = false;
+      this.model.players[this.playerIndex].toLeft = false;
+      this.model.players[this.playerIndex].toRight = false;
+  }
+
+  isRecentHole() {
+    return this.holeIndex === this.GameService.playedHoles;
   }
 
   _getTotal() {
@@ -127,7 +150,7 @@ export class GameController {
   }
 
   _copyPlayers(index) {
-    return  angular.copy([this.totalPlayers[index]])
+    return  angular.copy([this.model.players[index]])
   }
 
 }

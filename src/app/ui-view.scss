@@ -43,7 +43,6 @@ to prevent collapsing during animation*/
 
 [ui-view].ng-leave {
   opacity: 1;
-  /*padding-left: 0px;*/
   -webkit-transform:scale2d(250px, 0);
   -moz-transform:scale2d(250px, 0);
   transform:scale2d(250px, 0);
@@ -51,7 +50,6 @@ to prevent collapsing during animation*/
 
 [ui-view].ng-leave-active {
   opacity: 0;
-  /*padding-left: 250px;*/
   -webkit-transform:scale2d(250px, 0);
   -moz-transform:scale2d(250px, 0);
   transform:scale2d(250px, 0);

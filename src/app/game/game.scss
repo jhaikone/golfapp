@@ -28,8 +28,22 @@
   }
 }
 
+.drive-icon {
+  padding: 4px;
+}
 
 .game {
+
+    .hole-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 25px;
+
+      &:hover {
+        color: rgb(139,195,74);
+      }
+    }
 
     .drive {
         color: rgb(139,195,74);
@@ -79,7 +93,7 @@
         -moz-transition: all 0.4s ease-in-out;
         -o-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
-        transform:translateX(600px);
+        transform:translate3d(600px, 0, 0);
       }
 
       &.slide.ng-leave {
@@ -91,7 +105,7 @@
         -moz-transition: all 0.4s ease-in-out;
         -o-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
-        transform:translateX(0);
+        transform:translate3d(0, 0, 0);
       }
 
       &.slide.ng-leave.ng-leave-active {
@@ -100,6 +114,50 @@
       }
 
     }
+
+    .stroke-content {
+      opacity: 1;
+      display: block;
+      z-index: 0;
+
+      &.stroke-content.ng-enter {
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+      //  transform:translate3d(0, 0, 0);
+      }
+
+      &.stroke-content.ng-leave {
+        opacity:0;
+      }
+
+      &.stroke-content.ng-enter.ng-enter-active {
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+      //  transform:translate3d(0, -100px, 0);
+      }
+
+      &.stroke-content.ng-leave.ng-leave-active {
+        transition: all 0.4s ease-in-out;
+        opacity:1;
+      }
+
+    }
+
+  .visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.1s ease;
+  }
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.1s, opacity 0.1s ease;
+  }
 
 }
 

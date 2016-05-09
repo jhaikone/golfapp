@@ -46,7 +46,7 @@ class GoStrokeInputController {
     this.maxStrokes = $scope.maxStrokes;
     this.minStrokes = $scope.minStrokes;
     this.defaultStrokes = $scope.defaultStrokes;
-    console.log('default', this.defaultStrokes)
+
     this.primary = $scope.primary;
   }
 
@@ -71,7 +71,6 @@ class GoStrokeInputController {
    * default value is par minus one if minus is pressed
    */
   _initModel(isIncreasing) {
-        console.log('ngmodel', this.$scope.ngModel);
     if(!this.$scope.ngModel) {
       this.$scope.ngModel = isIncreasing ? this.defaultStrokes-1 : this.defaultStrokes;
 
