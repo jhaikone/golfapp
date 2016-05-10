@@ -30,5 +30,5 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     })
     ;
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/setup');
 }

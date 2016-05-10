@@ -7,11 +7,6 @@ import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { SetupController } from './setup/setup.controller';
 
-import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
-import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-import { NavbarDirective } from '../app/components/navbar/navbar.directive';
-import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
-
 import { PlayersService } from '../app/components/services/players/players.service';
 import { GameService } from '../app/components/services/game/game.service';
 
@@ -39,15 +34,9 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .controller('GameController', GameController)
   .controller('SetupController', SetupController)
 
-  .service('githubContributor', GithubContributorService)
-  .service('webDevTec', WebDevTecService)
-
-  .directive('acmeNavbar', NavbarDirective)
-  .directive('acmeMalarkey', MalarkeyDirective)
-
   .service('PlayersService', PlayersService)
   .service('GameService', GameService)
-
+  
   .directive('goHeader', GoHeaderDirective)
   .directive('goSwitch', GoSwitch)
   .directive('goStrokeInput', GoStrokeInputDirective)

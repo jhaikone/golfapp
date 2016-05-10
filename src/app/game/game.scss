@@ -5,12 +5,8 @@
 // bower:scss
 // endbower
 
-.background {
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
 
+/*
   &.player-1 {
     background: linear-gradient(141deg, #F4FFF0 0%, #fff 50%, #F4FFF0 60%);
   }
@@ -26,7 +22,24 @@
   &.player-4 {
     background: linear-gradient(141deg, #FFF0F0 0%, #fff 50%, #FFF0F0 60%);
   }
-}
+  */
+
+  .player-1 {
+    //background: rgba(196, 231, 154, 0.1);
+    background: #FBFFFA;
+  }
+
+  .player-2 {
+    background: #FAFCFF;
+  }
+
+  .player-3 {
+    background: #FEFAFF;
+  }
+
+  .player-4 {
+    background: #FFFEFA;
+  }
 
 .drive-icon {
   padding: 4px;
@@ -84,80 +97,94 @@
       height: 550px;
     }
 
+    .no-result-text {
+      opacity: 1;
+      display: block;
+
+      position: absolute;
+      left: 0;
+      top: 50%;
+      text-align: center;
+      width: 100%;
+
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+      span {
+        color: rgb(204, 204, 204);
+        font-size: 50px;
+        text-shadow: rgb(71, 71, 71) -1px -1px 1px;
+      }
+
+    }
+
+    .hidee {
+      opacity: 0;
+    }
+
     .slide {
       opacity: 1;
       display:block;
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
 
-      &.slide.ng-enter {
-        -webkit-transition: all 0.4s ease-in-out;
-        -moz-transition: all 0.4s ease-in-out;
-        -o-transition: all 0.4s ease-in-out;
-        transition: all 0.4s ease-in-out;
-        transform:translate3d(600px, 0, 0);
+      &.slide[turn=right].ng-enter {
+        position: absolute;
+        display:block;
+        width:100%;
+        transform:translate3d(100%, 0, 0);
       }
 
-      &.slide.ng-leave {
+      &.slide[turn=right].ng-leave {
         opacity:0;
       }
 
-      &.slide.ng-enter.ng-enter-active {
-        -webkit-transition: all 0.4s ease-in-out;
-        -moz-transition: all 0.4s ease-in-out;
-        -o-transition: all 0.4s ease-in-out;
-        transition: all 0.4s ease-in-out;
+      &.slide[turn=right].ng-enter.ng-enter-active {
         transform:translate3d(0, 0, 0);
       }
 
-      &.slide.ng-leave.ng-leave-active {
-        transition: all 0.4s ease-in-out;
-        opacity:1;
+      &.slide[turn=right].ng-leave.ng-leave-active {
+        transform:translate3d(-100%, 0, 0);
+      }
+
+      &.slide[turn=left].ng-enter {
+        position: absolute;
+        display:block;
+        width:100%;
+        transform:translate3d(-100%, 0, 0);
+      }
+
+      &.slide[turn=left].ng-leave {
+        opacity:0;
+      }
+
+      &.slide[turn=left].ng-enter.ng-enter-active {
+        transform:translate3d(0, 0, 0);
+      }
+
+      &.slide[turn=left].ng-leave.ng-leave-active {
+        transform:translate3d(100%, 0, 0);
       }
 
     }
 
     .stroke-content {
-      opacity: 1;
-      display: block;
-      z-index: 0;
-
-      &.stroke-content.ng-enter {
-        -webkit-transition: all 0.4s ease-in-out;
-        -moz-transition: all 0.4s ease-in-out;
-        -o-transition: all 0.4s ease-in-out;
-        transition: all 0.4s ease-in-out;
-      //  transform:translate3d(0, 0, 0);
-      }
-
-      &.stroke-content.ng-leave {
-        opacity:0;
-      }
-
-      &.stroke-content.ng-enter.ng-enter-active {
-        -webkit-transition: all 0.4s ease-in-out;
-        -moz-transition: all 0.4s ease-in-out;
-        -o-transition: all 0.4s ease-in-out;
-        transition: all 0.4s ease-in-out;
-      //  transform:translate3d(0, -100px, 0);
-      }
-
-      &.stroke-content.ng-leave.ng-leave-active {
-        transition: all 0.4s ease-in-out;
-        opacity:1;
-      }
-
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
     }
 
-  .visible {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s ease;
-  }
-
-  .hidden {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s 0.1s, opacity 0.1s ease;
-  }
+    .hide-stroke-content {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+      transform:translate3d(0, -110%, 0);
+    }
 
 }
 

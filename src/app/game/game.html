@@ -5,7 +5,7 @@
     md-swipe-left="game.nextPlayer()"
   >
 
-    <div class="go-padding" layout="row" layout-wrap>
+    <div class="go-padding relative-top player-{{game.playerIndex+1}}" layout="row" layout-wrap>
       <div ng-repeat="player in game.model.players track by $index" class="players players-count-{{game.playersCount}}">
         <div ng-class="{'primary-text': $index === game.playerIndex}">
           <i ng-click="game.goToPlayer($index)" class="fa fa-user fa-2x player-icon"></i>
@@ -15,17 +15,18 @@
     </div>
 
 
-    <div ng-repeat="player in game.players" class="slide score-content">
-      <section>
+    <div ng-repeat="player in game.players" turn="{{game.slideDirection}}" class="slide score-content">
+      <section class="player-{{game.playerIndex+1}} relative-top">
           <go-switch label="'Pallo taskuun'" ng-model="game.model.players[game.playerIndex].noResult"></go-switch>
+          <hr>
       </section>
 
-      <hr>
+      <div class="no-result-text" ng-class="{'hidee': !game.model.players[game.playerIndex].noResult}"><span> Ei tulosta</span></div>
 
       <section>
           <div
-              ng-class="{'visible': !game.model.players[game.playerIndex].noResult, 'hidden': game.model.players[game.playerIndex].noResult}"
               class="stroke-content"
+              ng-class="{'hide-stroke-content': game.model.players[game.playerIndex].noResult}"
             >
             <go-stroke-input
                             name="strokes"

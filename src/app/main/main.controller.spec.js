@@ -1,3 +1,5 @@
+/*
+example test
 describe('controllers', () => {
   let vm;
 
@@ -30,3 +32,4 @@ describe('controllers', () => {
     expect(vm.awesomeThings.length === 5).toBeTruthy();
   });
 });
+*/

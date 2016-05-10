@@ -28,9 +28,10 @@ export class SetupController {
   }
 
   setDefaultHCP(player) {
-    if(player && player.name !== '') {
+    this.$log.log('player', player);
+    if(player && player.name !== '' && player.hcp === null) {
       player.hcp = 36;
-    } else if(player) {
+    } else if(!player) {
       player.hcp = null;
     }
   }

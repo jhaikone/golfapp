@@ -19,6 +19,8 @@ export class GameController {
 
     this.playersCount = this.model.players.length;
 
+    this.slideDirection = 'right';
+
     $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
         this.calculateStrokes();
     });
@@ -34,8 +36,10 @@ export class GameController {
 
   nextPlayer() {
     if(this.playerIndex < this.model.players.length-1 ) {
+      this.slideDirection = 'right';
       this.playerIndex = this.playerIndex + 1;
     } else {
+      this.slideDirection = 'left';
       this.playerIndex = 0;
     }
     this.players = this._copyPlayers(this.playerIndex);
@@ -43,14 +47,20 @@ export class GameController {
 
   previousPlayer() {
     if(this.playerIndex > 0 ) {
+      this.slideDirection = 'left';
       this.playerIndex = this.playerIndex - 1;
     } else {
+      this.slideDirection = 'right';
       this.playerIndex = this.model.players.length-1;
     }
     this.players = this._copyPlayers(this.playerIndex);
   }
 
   goToPlayer(index) {
+    if(index === this.playerIndex) {
+      return;
+    }
+    this.slideDirection = index > this.playerIndex ? 'right' : 'left';
     this.playerIndex = index;
     this.players = this._copyPlayers(this.playerIndex);
   }
@@ -75,7 +85,7 @@ export class GameController {
 
   calculateStrokes() {
       let strokes = this.model.players[this.playerIndex].strokes;
-      
+
       if (!strokes) {
         return;
       }
