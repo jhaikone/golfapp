@@ -2,11 +2,12 @@ const fairway = 1;
 
 export class GameController {
 
-  constructor($scope, GameService, $log, $timeout) {
+  constructor($scope, GameService, $log) {
     'ngInject'
 
     this.GameService = GameService;
     this.gameData = this.GameService.getGameSetup();
+    this.$log = $log;
 
     this.holes = this.gameData.course.holes;
 
@@ -17,7 +18,6 @@ export class GameController {
     this.players = this._copyPlayers(0);
 
     this.playersCount = this.model.players.length;
-    this.$scope = $timeout;
 
     $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
         this.calculateStrokes();
@@ -75,7 +75,10 @@ export class GameController {
 
   calculateStrokes() {
       let strokes = this.model.players[this.playerIndex].strokes;
-      if(!strokes) {return};
+      
+      if (!strokes) {
+        return;
+      }
 
       let total = this._getTotal();
 
@@ -93,7 +96,7 @@ export class GameController {
   }
 
   finish() {
-    console.log('do finish here');
+    this.$log.log('do finish here');
   }
 
   _updateView() {

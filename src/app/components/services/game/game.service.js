@@ -75,6 +75,6 @@ export class GameService {
 
   get playedHoles() {
     return this.results.length-1
-  };
+  }
 
 }
