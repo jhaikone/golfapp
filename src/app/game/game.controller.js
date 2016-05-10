@@ -82,7 +82,6 @@ export class GameController {
       }
   }
 
-
   calculateStrokes() {
       let strokes = this.model.players[this.playerIndex].strokes;
 
@@ -102,6 +101,7 @@ export class GameController {
   accept() {
     this.GameService.addHoleResult(this.model, this.holeIndex);
     this.holeIndex = this.GameService.playedHoles;
+    this.slideDirection = 'right';
     this._updateView();
   }
 
@@ -118,6 +118,7 @@ export class GameController {
   previousHole() {
     if(this.holeIndex > 0) {
       this.holeIndex--;
+      this.slideDirection = 'left';
       this._updateView();
     }
   }
@@ -125,10 +126,9 @@ export class GameController {
   nextHole() {
     if(this.GameService.playedHoles > this.holeIndex) {
       this.holeIndex++;
+      this.slideDirection = 'right';
       this._updateView();
     }
-
-
   }
 
   getPar() {
