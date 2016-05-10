@@ -12,21 +12,21 @@ export class GameService {
 
     this.PlayersService = PlayersService;
 
-    this.results = [];
-    this.results.push(this._createPlayerModel());
-
     this.gameSetup = {
       mode: GAME_MODES[0]
     }
 
+    this.results = [];
+    this.results.push(this._createPlayerModel());
+
   }
 
-  _createPlayerModel(lastHole = false) {
+  _createPlayerModel(lastHole) {
     let objectPlayers = [];
     let totalPlayers = this.PlayersService.getPlayers();
 
     totalPlayers.forEach( (player)=> {
-      objectPlayers.push({name: player.name, putts: 0, sandStrokes: 0, penalties: 0, noResult: false});
+      objectPlayers.push({name: player.name, id: player.id, putts: 0, sandStrokes: 0, penalties: 0, noResult: false});
     })
 
     return {
@@ -58,6 +58,11 @@ export class GameService {
     }
   }
 
+  finishCourse(model, index) {
+    this.results[index] = model;
+    this.calculateStrokes();
+  }
+
   get isLastHole() {
     return 1 === this.gameSetup.course.holes.length -this.results.length;
   }
@@ -75,6 +80,10 @@ export class GameService {
 
   get playedHoles() {
     return this.results.length-1
+  }
+
+  calculateStrokes() {
+    console.log('results', this.results);
   }
 
 }

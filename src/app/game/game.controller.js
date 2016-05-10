@@ -107,6 +107,7 @@ export class GameController {
 
   finish() {
     this.$log.log('do finish here');
+    this.GameService.finishCourse(this.model, this.holeIndex);
   }
 
   _updateView() {

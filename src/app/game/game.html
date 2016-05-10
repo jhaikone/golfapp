@@ -107,7 +107,7 @@
           <span ng-if="game.isRecentHole()">Seuraava väylä</span>
           <span ng-if="!game.isRecentHole()">Viimeisin väylä</span>
         </md-button>
-        <md-button ng-show="game.model.lastHole" class="md-primary md-raised" ng-click="game.finish()">
+        <md-button ng-show="!game.model.lastHole" class="md-primary md-raised" ng-click="game.finish()">
           <span>Viimeistele kierros</span>
         </md-button>
         <div ng-click="game.nextHole()" class="flex hole-icon text-right"><i class="fa fa-angle-right"></i></div>
