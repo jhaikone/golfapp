@@ -13,6 +13,7 @@ import { GameService } from '../app/components/services/game/game.service';
 import { GoHeaderDirective } from '../app/components/directives/goHeader/go-header.directive';
 import { GoStrokeInputDirective } from '../app/components/directives/goStrokeInput/go-stroke-input.directive';
 import { GoSwitch } from '../app/components/directives/goSwitch/go-switch.directive';
+import { BottomBar } from '../app/components/directives/bottom-bar/bottom-bar.directive';
 
 import { GameController } from './game/game.controller';
 
@@ -36,9 +37,10 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
 
   .service('PlayersService', PlayersService)
   .service('GameService', GameService)
-  
+
   .directive('goHeader', GoHeaderDirective)
   .directive('goSwitch', GoSwitch)
   .directive('goStrokeInput', GoStrokeInputDirective)
+  .directive('bottomBar', BottomBar)
 
   .service('CoursesMock', CoursesMock);

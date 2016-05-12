@@ -8,8 +8,9 @@
 
 /* Have to set height explicity on ui-view
 to prevent collapsing during animation*/
-.well[ui-view]{
 
+.well[ui-view]{
+  height: 100%;
 }
 
 .ui-view-container {

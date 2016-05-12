@@ -6,16 +6,17 @@
 // endbower
 
 .go-content {
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    position: relative;
+    width:100%;
+    text-align: center;
+    margin: auto;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    height: 100%;
+    padding-bottom: 16px;
 
     span {
           font-size: 16px;
     }
-
-  position: relative;
-  text-align: center;
-  width:100%;
-  margin: auto;
 }
 
 .relative-top {

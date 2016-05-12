@@ -100,6 +100,7 @@ export class GameController {
 
   accept() {
     this.GameService.addHoleResult(this.model, this.holeIndex);
+    this.$log.log('model', this.model);
     this.holeIndex = this.GameService.playedHoles;
     this.slideDirection = 'right';
     this._updateView();

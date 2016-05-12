@@ -53,13 +53,21 @@ export class GameService {
 
   addHoleResult(model, index) {
     this.results[index] = model;
+
     if(index === this.results.length-1) {
       this.results.push(this._createPlayerModel(this.isLastHole));
+
+    } else {
+      this.PlayersService.removeOldScore(this.results[index].players);
     }
+
+    this.PlayersService.setPoints(this.results[index].players);
+    
   }
 
   finishCourse(model, index) {
     this.results[index] = model;
+    this.PlayersService.setPoints(this.results[index].players);
     this.calculateStrokes();
   }
 
@@ -83,7 +91,7 @@ export class GameService {
   }
 
   calculateStrokes() {
-    console.log('results', this.results);
+    console.log(this.PlayersService.getScores());
   }
 
 }
