@@ -19,7 +19,7 @@ import { GameController } from './game/game.controller';
 
 import { CoursesMock } from '../app/components/courses/courses.mock';
 
-angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngResource', 'ui.router', 'ngMaterial', 'toastr'])
+angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngResource', 'ui.router', 'ngMaterial', 'toastr', 'hmTouchEvents'])
   .constant('malarkey', malarkey)
   .constant('moment', moment)
   .config(config)
