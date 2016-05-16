@@ -6,11 +6,13 @@ import { runBlock } from './index.run';
 
 import { MainController } from './main/main.controller';
 import { SetupController } from './setup/setup.controller';
+import { PlayController } from './play/play.controller';
 
 import { PlayersService } from '../app/components/services/players/players.service';
 import { GameService } from '../app/components/services/game/game.service';
 
 import { GoHeaderDirective } from '../app/components/directives/goHeader/go-header.directive';
+import { SwipeAndSnapDirective } from '../app/components/directives/swipe-and-snap/swipe-and-snap.directive';
 import { GoStrokeInputDirective } from '../app/components/directives/goStrokeInput/go-stroke-input.directive';
 import { GoSwitch } from '../app/components/directives/goSwitch/go-switch.directive';
 import { BottomBar } from '../app/components/directives/bottom-bar/bottom-bar.directive';
@@ -34,11 +36,13 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .controller('MainController', MainController)
   .controller('GameController', GameController)
   .controller('SetupController', SetupController)
+  .controller('PlayController', PlayController)
 
   .service('PlayersService', PlayersService)
   .service('GameService', GameService)
 
   .directive('goHeader', GoHeaderDirective)
+  .directive('swipeAndSnap', SwipeAndSnapDirective)
   .directive('goSwitch', GoSwitch)
   .directive('goStrokeInput', GoStrokeInputDirective)
   .directive('bottomBar', BottomBar)

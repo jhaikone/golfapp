@@ -1,5 +1,6 @@
 const fairway = 1;
 
+
 export class GameController {
 
   constructor($scope, GameService, $log) {
@@ -20,6 +21,8 @@ export class GameController {
     this.playersCount = this.model.players.length;
 
     this.slideDirection = 'right';
+
+    console.log('angular', Hammer);
 
     $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
         this.calculateStrokes();

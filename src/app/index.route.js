@@ -28,6 +28,13 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'GameController',
       controllerAs: 'game'
     })
+
+    .state('navbar.play', {
+      url: '/play',
+      templateUrl: 'app/play/play.html',
+      controller: 'PlayController',
+      controllerAs: 'play'
+    })
     ;
 
   $urlRouterProvider.otherwise('/setup');
