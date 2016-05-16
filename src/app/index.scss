@@ -61,7 +61,7 @@ html,body
     height: 100%;
     margin: 0px;
     padding: 0 1px;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     margin:auto;
 
     ::-webkit-scrollbar {
@@ -73,7 +73,7 @@ html,body
 
 .app-content {
   height: 100%;
-  padding-bottom: 100px;
+  //padding-bottom: 100px;
 }
 
 .browsehappy {

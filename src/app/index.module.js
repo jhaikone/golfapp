@@ -12,6 +12,7 @@ import { PlayersService } from '../app/components/services/players/players.servi
 import { GameService } from '../app/components/services/game/game.service';
 
 import { GoHeaderDirective } from '../app/components/directives/goHeader/go-header.directive';
+import { HoleDirective } from '../app/components/directives/hole/hole.directive';
 import { SwipeAndSnapDirective } from '../app/components/directives/swipe-and-snap/swipe-and-snap.directive';
 import { GoStrokeInputDirective } from '../app/components/directives/goStrokeInput/go-stroke-input.directive';
 import { GoSwitch } from '../app/components/directives/goSwitch/go-switch.directive';
@@ -41,6 +42,7 @@ angular.module('golfapp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .service('PlayersService', PlayersService)
   .service('GameService', GameService)
 
+  .directive('hole', HoleDirective)
   .directive('goHeader', GoHeaderDirective)
   .directive('swipeAndSnap', SwipeAndSnapDirective)
   .directive('goSwitch', GoSwitch)

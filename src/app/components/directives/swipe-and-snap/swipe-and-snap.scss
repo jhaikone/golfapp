@@ -7,34 +7,33 @@
 
 #item1 {
   background: #69D2E7;
-  height:100%;
-  width:450px;
+  //width:100%;
+  //max-width: 450px;
 }
 
 #item2 {
   background: #F38630;
-  height: 100%;
-  width: 450px;
+  //max-width: 450px;
 }
 
 #item3 {
   background: #A7DBD8;
-  height: 100%;
-  width: 450px;
+  //max-width: 450px;
 }
 
-div.float--left {
+.float--left {
   float: left;
+  max-width:450px;
+  width: 100vw;
+  //max-height: 800px;
+  //height: 100%;
 }
 
 .carouselWrap {
-  width: 1036px;
+  width: 8100px;;
   background: white;
   height: 100%;
-  color: white;
-  font-family: "Gill Sans / Gill Sans MT", sans-serif;
-  font-size: 3em;
-  line-height: 568px;
+  //line-height: 568px;
   text-align: center;
 }
 
@@ -47,23 +46,29 @@ div.float--left {
 
 .device {
   width: 100%;
-	height: 100%;
+	//height: 100%;
 	-webkit-background-size: cover;
 	   -moz-background-size: cover;
 	     -o-background-size: cover;
 	        background-size: cover;
 	position: absolute; margin: auto;
-	top: 0px; bottom: 100px; left: 0px; right: 0px;
+	top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 
 
 .content {
+
   height:100%;
+  /*
   width:100%;
 	background: #375585;
 	position: absolute;
 	top: 0px; left: 0px;
 	z-index: 300;
+  */
 	-webkit-transition: all 250ms ease;
 	   -moz-transition: all 250ms ease;
 	    -ms-transition: all 250ms ease;
