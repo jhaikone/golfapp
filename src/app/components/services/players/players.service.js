@@ -3,12 +3,12 @@ export class PlayersService {
     //this.players = new Array(4);
     this.players = [
       {
-        id: 1,
+        id: 24244,
         hcp: 36,
         name:"Juuso"
       },
       {
-        id: 2,
+        id: 33442,
         hcp: 20,
         name:"Jesse"
       },

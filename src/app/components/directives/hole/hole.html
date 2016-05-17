@@ -1,7 +1,7 @@
 <div>
 
 
-      <go-header left="game.getHoleHeader($index)" middle="game.getPar($index)"></go-header>
+      <go-header left="'Väylä' + ' ' +game.getHole()" middle="'Par' + ' ' + game.getPar()"></go-header>
 
       <div
             class="go-content haxor background player-{{game.playerIndex+1}}"
@@ -13,7 +13,7 @@
       <div class="">
 
 
-      <div class="relative-top player-{{game.playerIndex+1}}" layout="row" layout-wrap>
+      <div class="relative-top padding-top player-{{game.playerIndex+1}}" layout="row" layout-wrap>
         <div ng-repeat="player in game.model.players track by $index" class="players players-count-{{game.playersCount}}" ng-click="game.goToPlayer($index)">
           <div ng-class="{'primary-text': $index === game.playerIndex}">
             <i class="fa fa-2x fa-user player-icon"></i>
@@ -42,7 +42,7 @@
                               stroke-label="'Lyönnit'"
                               max-strokes="20"
                               min-strokes="1"
-                              default-strokes="game.getHole().par"
+                              default-strokes="game.getPar()"
                               primary="true"
                               ng-model="game.model.players[game.playerIndex].strokes"
               >

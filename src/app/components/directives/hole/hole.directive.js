@@ -28,15 +28,17 @@ class HoleController {
 
     this.GameService = GameService;
     this.gameData = this.GameService.getGameSetup();
+    this.$scope = $scope;
     this.$log = $log;
 
     this.holes = this.gameData.course.holes;
-    console.log($scope.game.index);
-    this.holeIndex = $scope.game.index;
+    this.$log.log($scope.game.index);
     this.playerIndex = 0;
 
-    this.model = this.GameService.getHoleResults(0);
+    this.model = this.GameService.getHoleResults($scope.game.index);
+    console.log('molde', this.model);
     this.players = this._copyPlayers(0);
+    this.$log.log('plauers', this.players);
 
     this.playersCount = this.model.players.length;
 
@@ -46,35 +48,12 @@ class HoleController {
         this.calculateStrokes();
     });
 
-
     $scope.$watch(() => this.model.players[this.playerIndex].strokes, (oldValue, newValue) => {
         if(oldValue < newValue) {
             this.reduceStrokes();
         }
     });
 
-  }
-
-  nextPlayer() {
-    if(this.playerIndex < this.model.players.length-1 ) {
-      this.slideDirection = 'right';
-      this.playerIndex = this.playerIndex + 1;
-    } else {
-      this.slideDirection = 'left';
-      this.playerIndex = 0;
-    }
-    this.players = this._copyPlayers(this.playerIndex);
-  }
-
-  previousPlayer() {
-    if(this.playerIndex > 0 ) {
-      this.slideDirection = 'left';
-      this.playerIndex = this.playerIndex - 1;
-    } else {
-      this.slideDirection = 'right';
-      this.playerIndex = this.model.players.length-1;
-    }
-    this.players = this._copyPlayers(this.playerIndex);
   }
 
   goToPlayer(index) {
@@ -155,16 +134,11 @@ class HoleController {
   }
 
   getPar() {
-    return 'Par ' + this.getHole().par;
+    return this.GameService.getPar(this.$scope.game.index);
   }
 
   getHole() {
-    return this.holes[this.holeIndex];
-  }
-
-  getHoleHeader() {
-    let holeNumber = this.holeIndex +1;
-    return 'Väylä' + ' ' + holeNumber;
+    return parseInt(this.$scope.game.index+1);
   }
 
   clearDrive() {
@@ -186,6 +160,6 @@ class HoleController {
   }
 
   _copyPlayers(index) {
-    return  angular.copy([this.model.players[index]])
+    return angular.copy([this.model.players[index]]);
   }
 }

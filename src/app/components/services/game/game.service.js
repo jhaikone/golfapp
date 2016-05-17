@@ -4,12 +4,13 @@ const GAME_MODES = [
 ];
 
 export class GameService {
-  constructor(CoursesMock, PlayersService) {
+  constructor(CoursesMock, PlayersService, $log) {
     'ngInject'
 
     //TODO: remove this when done
     this.CoursesMock = CoursesMock;
 
+    this.$log = $log;
     this.PlayersService = PlayersService;
 
     this.gameSetup = {
@@ -17,23 +18,16 @@ export class GameService {
     }
 
     this.results = [];
-    this.results.push(this._createPlayerModel());
+    this.holeIndex = 0;
+    this.holes = this.getGameSetup().course.holes;
+    console.log(this.holes);
+    this.holes.forEach((hole) => {
+      this.results.push(this._createPlayerModel());
+    });
+    this.$log.log('holes', this.results);
 
   }
 
-  _createPlayerModel(lastHole) {
-    let objectPlayers = [];
-    let totalPlayers = this.PlayersService.getPlayers();
-
-    totalPlayers.forEach( (player)=> {
-      objectPlayers.push({name: player.name, id: player.id, putts: 0, sandStrokes: 0, penalties: 0, noResult: false});
-    })
-
-    return {
-      players: objectPlayers,
-      lastHole: lastHole
-    };
-  }
 
   getModes() {
     return GAME_MODES;
@@ -55,14 +49,14 @@ export class GameService {
     this.results[index] = model;
 
     if(index === this.results.length-1) {
-      this.results.push(this._createPlayerModel(this.isLastHole));
+      this.results.push(this._createPlayerModel());
 
     } else {
       this.PlayersService.removeOldScore(this.results[index].players);
     }
 
     this.PlayersService.setPoints(this.results[index].players);
-    
+
   }
 
   finishCourse(model, index) {
@@ -72,7 +66,7 @@ export class GameService {
   }
 
   get isLastHole() {
-    return 1 === this.gameSetup.course.holes.length -this.results.length;
+    return this.holes.length-1 === this.holeIndex;
   }
 
   getPreviousHole(index) {
@@ -83,6 +77,8 @@ export class GameService {
   }
 
   getHoleResults(index) {
+    console.log('getting results', this.results[this.holeIndex]);
+    console.log('index', this.holeIndex);
     return this.results[index];
   }
 
@@ -91,7 +87,37 @@ export class GameService {
   }
 
   calculateStrokes() {
-    console.log(this.PlayersService.getScores());
+    this.$log.log(this.PlayersService.getScores());
   }
+
+  getHoleIndex() {
+    return this.holeIndex;
+  }
+
+  getPar(index) {
+    return this.holes[index].par;
+  }
+
+  updateHoleIndex(direction) {
+    if(direction === 'previous' && this.holeIndex > 0) {
+      this.holeIndex--;
+    } else if(direction === 'next' && this.holeIndex < 18) {
+      this.holeIndex++;
+    }
+    this.$log.log('updatedHoleIndex', this.holeIndex);
+  }
+
+  _createPlayerModel() {
+     let objectPlayers = [];
+     let totalPlayers = this.PlayersService.getPlayers();
+
+     totalPlayers.forEach( (player)=> {
+       objectPlayers.push({name: player.name, id: player.id, putts: 0, sandStrokes: 0, penalties: 0, noResult: false});
+     })
+
+     return {
+       players: objectPlayers
+     };
+   }
 
 }

@@ -1,4 +1,4 @@
-export function SwipeAndSnapDirective() {
+export function SwipeAndSnapDirective(GameService) {
   'ngInject';
 
     let directive = {
@@ -8,12 +8,13 @@ export function SwipeAndSnapDirective() {
         link: function (scope, element) {
           let direction;
 
-          scope.right = function() {
-            direction = 'right';
+          scope.previous = function() {
+            console.log('rererer')
+            direction = 'previous';
           }
 
-          scope.left = function() {
-            direction = 'left';
+          scope.next = function() {
+            direction = 'next';
           }
 
           let innerWidth = window.innerWidth;
@@ -85,9 +86,17 @@ export function SwipeAndSnapDirective() {
           };
 
           scope.end = function() {
+            console.log(GameService)
             element.addClass('animate');
             // Work out where we should "snap" to.
             restPosition = calculate_snap_location(positionX);
+
+            console.log('rest', restPosition);
+            console.log('snap', snapLocations[GameService.getHoleIndex()]);
+            if(restPosition !== snapLocations[GameService.getHoleIndex()]) {
+              GameService.updateHoleIndex(direction);
+            }
+
             element.css('-webkit-transform', 'translate3d(' + restPosition + 'px, 0px, 0px)');
           }
 
@@ -96,7 +105,7 @@ export function SwipeAndSnapDirective() {
           }
 
           scope.move = function(ev) {
-            
+
           if(ev.offsetDirection < 5) {
               // Set the current position.
               positionX = restPosition + parseInt(ev.deltaX);
