@@ -21,8 +21,19 @@
   }
   */
 
-.go-content {
-  //padding-bottom:100px;
+.kaikki {
+  width: 100%;
+  display: block;
+}
+
+.haxor {
+  position: absolute;
+  width: 100%;
+  bottom: 50px;
+  top: 190px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top:16px;
 }
 
 .player-1 {

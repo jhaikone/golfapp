@@ -10,20 +10,11 @@ export function GoHeaderDirective() {
     },
     template: `
       <div class="go-header md-primary">
-
         <div class="menu-content">
-
-            <div class="text-left">
-              <span>{{left}}</span>
-            </div>
-            <div class="text-middle">
-              <span>{{middle}}</span>
-            </div>
-            <div class="text-right">
-              <span>{{right}}</span>
-            </div>
-
-        </div>
+          <span class="text-left">{{left}}</span>
+          <span class="text-middle">{{middle}}</span>
+          <span class="text-right">{{right}}</span>
+          </div>
 
       </div>
     `,

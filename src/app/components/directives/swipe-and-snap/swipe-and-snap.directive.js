@@ -92,11 +92,12 @@ export function SwipeAndSnapDirective() {
           }
 
           scope.start = function(ev) {
-              element.removeClass('animate');
+            element.removeClass('animate');
           }
 
           scope.move = function(ev) {
-            if(ev.offsetDirection < 5) {
+            
+          if(ev.offsetDirection < 5) {
               // Set the current position.
               positionX = restPosition + parseInt(ev.deltaX);
               element.css('-webkit-transform', 'translate3d(' + positionX + 'px,0px,0px)');

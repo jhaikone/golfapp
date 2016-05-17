@@ -6,7 +6,10 @@
 // endbower
 
 .go-header {
-  position: relative;
+  position: absolute;
+  top: 0;
+  display:block;
+  width: 100%;
   background: #313131;
   max-width: 450px;
   /* margin: 0 auto; */
@@ -17,34 +20,39 @@
   -webkit-box-shadow: 0 3px 7px 0px black;
   -moz-box-shadow: 0 3px 7px 0px black;
    box-shadow: 0 3px 7px 0px black;
+   height: 50px;
 
     .menu-content {
-      padding: 10px;
-      display:flex;
-      flex-direction: row;
+      height: 100%;
       max-width: 450px;
       width: 100%;
-      align-items: stretch;
-      text-align: center;
+      display:flex;
+      flex-direction: row;
+
 
         span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #8bc34a;
+
+            &.text-left {
+              order: 1;
+              flex: 1;
+            }
+
+            &.text-middle {
+              order: 2;
+              flex: 1;
+            }
+
+            &.text-right {
+              order: 3;
+              flex: 1;
+            }
         }
 
-        .text-left {
-          order: 1;
-          flex: 1;
-        }
 
-        .text-middle {
-          order: 2;
-          flex: 1;
-        }
-
-        .text-right {
-          order: 3;
-          flex: 1;
-        }
     }
 }
 
