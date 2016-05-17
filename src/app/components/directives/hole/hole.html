@@ -10,22 +10,20 @@
       <div class="padding-vertically-large">
 
 
-      <div class="">
-
-
-      <div class="relative-top padding-top player-{{game.playerIndex+1}}" layout="row" layout-wrap>
-        <div ng-repeat="player in game.model.players track by $index" class="players players-count-{{game.playersCount}}" ng-click="game.goToPlayer($index)">
-          <div ng-class="{'primary-text': $index === game.playerIndex}">
-            <i class="fa fa-2x fa-user player-icon"></i>
+      <div class="relative-top back-white padding-top">
+        <div class="" layout="row" layout-wrap>
+          <div ng-repeat="player in game.model.players track by $index" class="players players-count-{{game.playersCount}}" ng-click="game.goToPlayer($index)">
+            <div ng-class="{'primary-text': $index === game.playerIndex}">
+              <i class="fa fa-2x fa-user player-icon"></i>
+            </div>
+            <span>{{player.name}}</span>
           </div>
-          <span>{{player.name}}</span>
         </div>
-      </div>
       </div>
 
 
       <div turn="{{game.slideDirection}}" class="slide">
-        <div class="player-{{game.playerIndex+1}} relative-top">
+        <div class="player-{{game.playerIndex+1}} relative-top back-white">
             <go-switch label="'Pallo taskuun'" ng-model="game.model.players[game.playerIndex].noResult"></go-switch>
             <hr>
         </div>
@@ -35,6 +33,7 @@
             <div
                 class="stroke-content"
                 ng-class="{'hide-stroke-content': game.model.players[game.playerIndex].noResult}"
+                ng-hide="game.model.players[game.playerIndex].noResult"
               >
               <go-stroke-input
                               name="strokes"

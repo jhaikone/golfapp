@@ -6,10 +6,10 @@ export function SwipeAndSnapDirective(GameService) {
         templateUrl: 'app/components/directives/swipe-and-snap/swipe-and-snap.html',
         replace: true,
         link: function (scope, element) {
+
           let direction;
 
           scope.previous = function() {
-            console.log('rererer')
             direction = 'previous';
           }
 
@@ -20,11 +20,11 @@ export function SwipeAndSnapDirective(GameService) {
           let innerWidth = window.innerWidth;
           let snapLocations;
 
-          if (innerWidth < 450) {
-            snapLocations = [0, -innerWidth, -innerWidth*2];
-          } else {
-            snapLocations = [0, -450, -900];
-          }
+          let snapMultiple = innerWidth < 450 ? innerWidth : 450;
+
+          snapLocations = GameService.holes.map((hole, index) => {
+            return -(snapMultiple*index);
+          });
 
           let restPosition = 0, // Define the location to end.
           positionX = 0; // The current position.
@@ -85,7 +85,8 @@ export function SwipeAndSnapDirective(GameService) {
             return bestSnap;
           };
 
-          scope.end = function() {
+          scope.end = function(event) {
+            //event.preventDefault();
             console.log(GameService)
             element.addClass('animate');
             // Work out where we should "snap" to.
@@ -96,24 +97,33 @@ export function SwipeAndSnapDirective(GameService) {
             if(restPosition !== snapLocations[GameService.getHoleIndex()]) {
               GameService.updateHoleIndex(direction);
             }
-
             element.css('-webkit-transform', 'translate3d(' + restPosition + 'px, 0px, 0px)');
           }
 
-          scope.start = function(ev) {
+          scope.start = function(event) {
+            //event.preventDefault();
             element.removeClass('animate');
           }
 
-          scope.move = function(ev) {
-
-          if(ev.offsetDirection < 5) {
+          scope.move = function(event) {
+            //event.preventDefault();
+          if(event.offsetDirection < 5) {
               // Set the current position.
-              positionX = restPosition + parseInt(ev.deltaX);
+              positionX = restPosition + parseInt(event.deltaX);
               element.css('-webkit-transform', 'translate3d(' + positionX + 'px,0px,0px)');
               element.css('transform', 'translate3d(' + positionX + 'px,0px,0px)');
             }
 
           }
+
+          scope.$on('update-hole', (event, direction) => {
+            element.removeClass('animate');
+            GameService.updateHoleIndex(direction);
+            restPosition = snapLocations[GameService.getHoleIndex()];
+            element.addClass("animate");
+            element.css('-webkit-transform', 'translate3d(' + restPosition + 'px,0px,0px)');
+          });
+
         }
 
     };

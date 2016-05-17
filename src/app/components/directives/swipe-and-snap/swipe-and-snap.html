@@ -5,11 +5,14 @@
             hm-panstart="start($event)"
             hm-panleft="next()"
             hm-panright="previous()"
-            hm-panend="end()"
+            hm-panend="end($event)"
+            hm-recognizer-options='{"type": "pan", "stopPropagation": true, "preventDefault": true}'
 
     >
       <hole class="floating-content" index="0"></hole>
       <hole class="floating-content" index="1"></hole>
+      <hole class="floating-content" index="2"></hole>
+
       <!-- <div ng-repeat="hole in game.holes track by $index"
         >
 

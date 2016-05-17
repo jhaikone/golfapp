@@ -21,8 +21,8 @@ export function GoStrokeInputDirective() {
               </div>
                   <span flex> </span>
               <div class="stroke-buttons-container">
-              <md-button class="md-fab md" ng-click="::ctrl.decrease()">-</md-button>
-              <md-button class="md-fab md" ng-click="::ctrl.increase()">+</md-button>
+              <md-button class="md-fab md-primary" ng-click="::ctrl.decrease()">-</md-button>
+              <md-button class="md-fab md-primary" ng-click="::ctrl.increase()">+</md-button>
               </div>
           </div>
         </md-toolbar>

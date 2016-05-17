@@ -21,40 +21,23 @@
   }
   */
 
-.kaikki {
-  width: 100%;
-  display: block;
-}
-
 .haxor {
   position: absolute;
   width: 100%;
   bottom: 50px;
   top: 150px;
   overflow-y: auto;
+
   overflow-x: hidden;
   padding-top:16px;
 }
 
-.player-1 {
-  //background: rgba(196, 231, 154, 0.1);
-  background: #FBFFFA;
-}
-
-.player-2 {
-  background: #FAFCFF;
-}
-
-.player-3 {
-  background: #FEFAFF;
-}
-
-.player-4 {
-  background: #FFFEFA;
-}
-
 .drive-icon {
   padding: 4px;
+}
+
+.back-white {
+    background: white;
 }
 
 
@@ -70,13 +53,12 @@
 }
 
 .drive {
-    color: rgb(139,195,74);
     padding: 15px;
     font-size: 30px;
 }
 
 .go-active {
-    color: green;
+    color: rgb(139,195,74);
 }
 
 .nav-container {

@@ -23,20 +23,20 @@ export function HoleDirective() {
 const fairway = 1;
 
 class HoleController {
-  constructor($scope, GameService, $log) {
+  constructor($rootScope, $scope, GameService, $log) {
     'ngInject'
 
     this.GameService = GameService;
-    this.gameData = this.GameService.getGameSetup();
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$log = $log;
 
-    this.holes = this.gameData.course.holes;
+
     this.$log.log($scope.game.index);
     this.playerIndex = 0;
 
     this.model = this.GameService.getHoleResults($scope.game.index);
-    console.log('molde', this.model);
+
     this.players = this._copyPlayers(0);
     this.$log.log('plauers', this.players);
 
@@ -118,19 +118,22 @@ class HoleController {
   }
 
   previousHole() {
-    if(this.holeIndex > 0) {
-      this.holeIndex--;
-      this.slideDirection = 'left';
-      this._updateView();
-    }
+    //if(this.holeIndex > 0) {
+      //this.holeIndex--;
+      //this.slideDirection = 'left';
+      //this._updateView();
+    //}
+
+    this.$rootScope.$broadcast('update-hole', 'previous');
   }
 
   nextHole() {
-    if(this.GameService.playedHoles > this.holeIndex) {
-      this.holeIndex++;
-      this.slideDirection = 'right';
-      this._updateView();
-    }
+    //if(this.GameService.playedHoles > this.holeIndex) {
+    //  this.holeIndex++;
+    //  this.slideDirection = 'right';
+    //  this._updateView();
+    //}
+    this.$rootScope.$broadcast('update-hole', 'next');
   }
 
   getPar() {
