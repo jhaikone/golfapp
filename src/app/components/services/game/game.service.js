@@ -20,7 +20,6 @@ export class GameService {
     this.results = [];
     this.holeIndex = 0;
     this.holes = this.getGameSetup().course.holes;
-    console.log(this.holes);
     this.holes.forEach((hole) => {
       this.results.push(this._createPlayerModel());
     });
@@ -77,9 +76,11 @@ export class GameService {
   }
 
   getHoleResults(index) {
-    console.log('getting results', this.results[this.holeIndex]);
-    console.log('index', this.holeIndex);
-    return this.results[index];
+    if(index) {
+      return this.results[index];
+    }
+    return this.results[this.holeIndex];
+
   }
 
   get playedHoles() {

@@ -31,14 +31,11 @@ class HoleController {
     this.$scope = $scope;
     this.$log = $log;
 
-
-    this.$log.log($scope.game.index);
     this.playerIndex = 0;
-
+    console.log('ATTRIBUTE INDEX', $scope.game.index)
     this.model = this.GameService.getHoleResults($scope.game.index);
 
     this.players = this._copyPlayers(0);
-    this.$log.log('plauers', this.players);
 
     this.playersCount = this.model.players.length;
 
@@ -51,6 +48,12 @@ class HoleController {
     $scope.$watch(() => this.model.players[this.playerIndex].strokes, (oldValue, newValue) => {
         if(oldValue < newValue) {
             this.reduceStrokes();
+        }
+    });
+
+    $scope.$watch(() => this.GameService.holeIndex, () => {
+        if(!this.model) {
+          this.model = this.GameService.getHoleResults();
         }
     });
 

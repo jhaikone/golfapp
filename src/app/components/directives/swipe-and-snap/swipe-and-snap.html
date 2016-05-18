@@ -1,5 +1,3 @@
-<div class="device">
-
       <div class="carouselWrap"
             hm-panmove="move($event)"
             hm-panstart="start($event)"
@@ -9,15 +7,8 @@
             hm-recognizer-options='{"type": "pan", "stopPropagation": true, "preventDefault": true}'
 
     >
-      <hole class="floating-content" index="0"></hole>
-      <hole class="floating-content" index="1"></hole>
-      <hole class="floating-content" index="2"></hole>
-
-      <!-- <div ng-repeat="hole in game.holes track by $index"
-        >
-
-      </div>-->
+          <hole class="floating-content-0 my-hole" index="index-1"></hole>
+          <hole class="floating-content-1 my-hole" index="index"></hole>
+          <hole class="floating-content-2 my-hole" index="index+1"></hole>
 
     </div>
-
-</div>
