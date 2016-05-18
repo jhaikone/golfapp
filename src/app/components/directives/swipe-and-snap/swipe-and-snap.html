@@ -1,14 +1,14 @@
       <div class="carouselWrap"
             hm-panmove="move($event)"
             hm-panstart="start($event)"
-            hm-panleft="next()"
-            hm-panright="previous()"
             hm-panend="end($event)"
             hm-recognizer-options='{"type": "pan", "stopPropagation": true, "preventDefault": true}'
+            ng-style="{'width': carouselWidth, 'left': leftPositions[0]}"
 
     >
-          <hole class="floating-content-0 my-hole" index="index-1"></hole>
-          <hole class="floating-content-1 my-hole" index="index"></hole>
-          <hole class="floating-content-2 my-hole" index="index+1"></hole>
+          <hole ng-style="{'width': slideWidth}" id="floating-content-0" index="index-1"></hole>
+          <hole ng-style="{'width': slideWidth, 'left': leftPositions[1]}" id="floating-content-1" index="index"></hole>
+          <hole ng-style="{'width': slideWidth, 'left': leftPositions[2]}" id="floating-content-2" index="index+1"></hole>
+
 
     </div>

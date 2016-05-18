@@ -7,23 +7,24 @@ export function SwipeAndSnapDirective(GameService) {
         replace: true,
         link: function (scope, element) {
 
-          scope.index = 1;
+          scope.index = 0;
 
           console.log('element', element);
-          let direction;
+          let _direction;
 
-          scope.previous = function() {
-            direction = 'previous';
-          }
 
-          scope.next = function() {
-            direction = 'next';
-          }
 
-          let innerWidth = window.innerWidth;
+          let innerWidth = window.innerWidth < 450 ? window.innerWidth : 450;
+          console.log(window);
+          console.log('ind', innerWidth);
+          scope.slideWidth = innerWidth.toString() + "px";
+          scope.carouselWidth = (innerWidth*3).toString() +"px";
+
+          scope.leftPositions = ["-"+innerWidth.toString()+"px", innerWidth.toString() +"px", (innerWidth*2).toString() +"px"];
+          console.log('lefetfg', scope.leftPositions)
           let snapLocations;
 
-          let snapMultiple = innerWidth < 450 ? innerWidth : 450;
+          let snapMultiple = innerWidth;
 
         //snapLocations = GameService.holes.map((hole, index) => {
             //return -(snapMultiple*index);
@@ -33,17 +34,9 @@ export function SwipeAndSnapDirective(GameService) {
           scope.holes = [{index:1},{index:2}, {index:3}];
 
           let restPosition = 0, // Define the location to end.
-          positionX = 0; // The current position.
+          positionX = 0, // The current position.
+          startPosX = 0; //starting point of the swipe
 
-          scope.contents = new Array(3);
-
-          scope.getId = function(index) {
-            return 'item'+index.toString();
-          }
-
-          scope.getLabel = function(index) {
-            return 'label' + ' ' + index;
-          }
 
           /**
           * Calculate the snap location.
@@ -76,7 +69,7 @@ export function SwipeAndSnapDirective(GameService) {
 
               // Calculate the difference.
               currentDiff = Math.abs(positionX - snapLocations[i]);
-              console.log('difference', direction)
+              console.log('difference', _direction)
 
 
               // Works out if this difference is the closest yet.
@@ -90,22 +83,45 @@ export function SwipeAndSnapDirective(GameService) {
             return bestSnap;
           };
 
+
+          scope.previous = function() {
+            _direction = 'previous';
+          }
+
+          scope.next = function() {
+            _direction = 'next';
+          }
+
           scope.end = function(event) {
             //event.preventDefault();
+            console.log('end pos', event);
 
             element.addClass('animate');
             // Work out where we should "snap" to.
-            restPosition = calculate_snap_location(positionX);
+            //restPosition = calculate_snap_location(positionX);
 
-            if(restPosition !== snapLocations[GameService.getHoleIndex()]) {
-              GameService.updateHoleIndex(direction);
+
+            if ((GameService.holeIndex === 0  && _direction === 'previous') || (GameService.holeIndex === GameService.holes.length-1) && _direction === 'next') {
+              restPosition = 0;
             }
+            else if(event.distance > snapMultiple/2.5 || Math.abs(event.overallVelocityX) > 0.5) {
+              restPosition = calculateSnapLocation(_direction);
+              GameService.updateHoleIndex(_direction);
+            } else {
+              restPosition = 0;
+            }
+
             element.css('-webkit-transform', 'translate3d(' + restPosition + 'px, 0px, 0px)');
           }
 
           scope.start = function(event) {
             //event.preventDefault();
             element.removeClass('animate');
+            if(event.deltaX > 0) {
+              _direction = 'previous';
+            } else {
+              _direction = 'next';
+            }
           }
 
           scope.move = function(event) {
@@ -124,40 +140,32 @@ export function SwipeAndSnapDirective(GameService) {
             element.removeClass('animate');
             GameService.updateHoleIndex(direction);
             console.log(direction);
-            if(direction === 'next') {
-              restPosition = snapLocations[2];
-            } else if(direction === 'previous') {
-              console.log('preeeeee');
-              restPosition = snapLocations[0];
-            }
+            restPosition = calculateSnapLocation(direction);
 
             element.addClass("animate");
             element.css('-webkit-transform', 'translate3d(' + restPosition + 'px,0px,0px)');
 
           });
 
-          element[0].addEventListener('transitionend', (event) => {
-            positionX = 0;
-            console.log('prooooooooooo', event);
-            element.css('-webkit-transform', 'translate3d(0,0,0)');
-            element.removeClass('animate');
-
-            scope.index = GameService.holeIndex;
-
-            scope.$apply();
-
-          })
-
-          console.log('elementtttttttttttt', element);
-          let query = element[0].querySelectorAll('.my-hole');
-          let views = []
-          for (let i = 0; i<query.length; i++) {
-            views.push(query[i]);
+          function calculateSnapLocation(direction) {
+            if(direction === 'next') {
+              return snapLocations[2];
+            } else if(direction === 'previous') {
+              return snapLocations[0];
+            }
           }
-          console.log('view', views);
 
+          element[0].addEventListener('transitionend', (event) => {
+            if (event.propertyName === 'transform') {
+              positionX = 0;
+              console.log('prooooooooooo', event);
+              element.css('-webkit-transform', 'translate3d(0,0,0)');
+              element.removeClass('animate');
+              scope.index = GameService.holeIndex;
 
-
+              scope.$apply();
+            }
+          })
 
         }
 

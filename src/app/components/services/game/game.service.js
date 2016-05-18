@@ -23,6 +23,7 @@ export class GameService {
     this.holes.forEach((hole) => {
       this.results.push(this._createPlayerModel());
     });
+    this.result = this.results[0];
     this.$log.log('holes', this.results);
 
   }
@@ -91,10 +92,6 @@ export class GameService {
     this.$log.log(this.PlayersService.getScores());
   }
 
-  getHoleIndex() {
-    return this.holeIndex;
-  }
-
   getPar(index) {
     return this.holes[index].par;
   }
@@ -105,7 +102,9 @@ export class GameService {
     } else if(direction === 'next' && this.holeIndex < 18) {
       this.holeIndex++;
     }
+    this.result = this.results[this.holeIndex];
     this.$log.log('updatedHoleIndex', this.holeIndex);
+    this.$log.log('thisresult', this.result);
   }
 
   _createPlayerModel() {

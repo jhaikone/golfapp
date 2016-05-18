@@ -26,36 +26,35 @@ class HoleController {
   constructor($rootScope, $scope, GameService, $log) {
     'ngInject'
 
-    this.GameService = GameService;
-    this.$rootScope = $rootScope;
-    this.$scope = $scope;
-    this.$log = $log;
+      this.GameService = GameService;
+      this.$rootScope = $rootScope;
+      this.$scope = $scope;
+      this.$log = $log;
 
-    this.playerIndex = 0;
-    console.log('ATTRIBUTE INDEX', $scope.game.index)
-    this.model = this.GameService.getHoleResults($scope.game.index);
+      this.playerIndex = 0;
+      console.log($scope.game.index);
+      this.model = this.GameService.result;
+      this.players = this._copyPlayers(0);
 
-    this.players = this._copyPlayers(0);
+      this.playersCount = this.model.players.length;
 
-    this.playersCount = this.model.players.length;
+      this.slideDirection = 'right';
 
-    this.slideDirection = 'right';
+      $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
+          this.calculateStrokes();
+      });
 
-    $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
-        this.calculateStrokes();
-    });
+      $scope.$watch(() => this.model.players[this.playerIndex].strokes, (oldValue, newValue) => {
+          if(oldValue < newValue) {
+              this.reduceStrokes();
+          }
+      });
 
-    $scope.$watch(() => this.model.players[this.playerIndex].strokes, (oldValue, newValue) => {
-        if(oldValue < newValue) {
-            this.reduceStrokes();
-        }
-    });
+      $scope.$watch(() => $scope.game.index, (value) => {
+        console.log('updated SCopE index', value);
+        this.model = this.GameService.results[$scope.game.index+1];
 
-    $scope.$watch(() => this.GameService.holeIndex, () => {
-        if(!this.model) {
-          this.model = this.GameService.getHoleResults();
-        }
-    });
+      });
 
   }
 
@@ -121,21 +120,10 @@ class HoleController {
   }
 
   previousHole() {
-    //if(this.holeIndex > 0) {
-      //this.holeIndex--;
-      //this.slideDirection = 'left';
-      //this._updateView();
-    //}
-
     this.$rootScope.$broadcast('update-hole', 'previous');
   }
 
   nextHole() {
-    //if(this.GameService.playedHoles > this.holeIndex) {
-    //  this.holeIndex++;
-    //  this.slideDirection = 'right';
-    //  this._updateView();
-    //}
     this.$rootScope.$broadcast('update-hole', 'next');
   }
 
@@ -155,6 +143,10 @@ class HoleController {
 
   isRecentHole() {
     return this.holeIndex === this.GameService.playedHoles;
+  }
+
+  outOfBounds() {
+    return this.index < 0 || this.index > this.GameService.holes.length-1;
   }
 
   _getTotal() {

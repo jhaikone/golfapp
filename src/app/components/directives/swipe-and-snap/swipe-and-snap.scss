@@ -21,40 +21,33 @@
   //max-width: 450px;
 }
 
-.floating-content-0 {
+#floating-content-0 {
   position: absolute;
   float: left;
-  max-width:450px;
-  width: 100vw;
   height: 100%;
   left: 0;
+  max-width: 450px;
 }
 
-.floating-content-1 {
+#floating-content-1 {
   position: absolute;
   float: left;
-  max-width:450px;
-  width: 100vw;
   height: 100%;
-  left: 450px;
+  max-width: 450px;
 }
 
-.floating-content-2 {
+#floating-content-2 {
   position: absolute;
   float: left;
-  max-width:450px;
-  width: 100vw;
   height: 100%;
-  left: 900px;
+  max-width: 450px;
 }
 
 .carouselWrap {
   position:absolute;
-  width: 1350px;;
   background: white;
   height: 100%;
   text-align: center;
-  left: -450px;
 }
 
 .animate {

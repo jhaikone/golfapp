@@ -22,8 +22,6 @@ export class GameController {
 
     this.slideDirection = 'right';
 
-    console.log('angular', Hammer);
-
     $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
         this.calculateStrokes();
     });
