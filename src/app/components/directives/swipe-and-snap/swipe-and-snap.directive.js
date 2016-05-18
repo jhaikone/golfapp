@@ -136,7 +136,12 @@ export function SwipeAndSnapDirective(GameService) {
           }
 
           scope.$on('update-hole', (event, direction) => {
-            console.log('UPDATEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
+            if(direction === 'previous' && GameService.holeIndex === 0) {
+              return;
+            }
+            if(direction === 'next' && GameService.holeIndex === GameService.holes.length-1) {
+              return;
+            }
             element.removeClass('animate');
             GameService.updateHoleIndex(direction);
             console.log(direction);

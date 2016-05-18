@@ -32,7 +32,7 @@ class HoleController {
       this.$log = $log;
 
       this.playerIndex = 0;
-      console.log($scope.game.index);
+
       this.model = this.GameService.result;
       this.players = this._copyPlayers(0);
 
