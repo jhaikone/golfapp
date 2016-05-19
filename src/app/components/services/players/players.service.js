@@ -11,7 +11,7 @@ export class PlayersService {
         id: 33442,
         hcp: 20,
         name:"Jesse"
-      },
+      }
     ];
 
     /*
@@ -52,9 +52,8 @@ export class PlayersService {
 
       this.points[id].push(player);
 
-      this.scores[id].strokes = this.scores[id].strokes + (player.strokes || 0);
-      this.scores[id].putts = this.scores[id].putts + (player.putts || 0);
-      console.log('scoreeeeeeeeee', this.scores [id]);
+      this.scores[id].strokes = this.scores[id].strokes+(player.strokes||0);
+      this.scores[id].putts = this.scores[id].putts+(player.putts||0);
     });
   }
 
@@ -62,8 +61,8 @@ export class PlayersService {
     players.forEach((player) => {
       let id = player.id;
 
-      this.scores[id].strokes = this.scores[id].strokes - (player.strokes || 0);
-      this.scores[id].putts = this.scores[id].putts - (player.putts || 0);
+      this.scores[id].strokes = this.scores[id].strokes - (player.strokes||0);
+      this.scores[id].putts = this.scores[id].putts - (player.putts||0);
     });
   }
 

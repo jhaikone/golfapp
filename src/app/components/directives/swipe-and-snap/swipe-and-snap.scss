@@ -1,46 +1,36 @@
-/**
- *  Do not remove the comment below. It's the markers used by wiredep to inject
- *  sass dependencies when defined in the bower.json of your dependencies
- */
-// bower:scss
-// endbower
 
 #item1 {
   background: #69D2E7;
-  //width:100%;
-  //max-width: 450px;
 }
 
 #item2 {
   background: #F38630;
-  //max-width: 450px;
 }
 
 #item3 {
   background: #A7DBD8;
-  //max-width: 450px;
 }
 
 #floating-content-0 {
   position: absolute;
-  float: left;
   height: 100%;
-  left: 0;
-  max-width: 450px;
+  left: -100%;
+  width: 100%;
 }
 
 #floating-content-1 {
   position: absolute;
-  float: left;
   height: 100%;
-  max-width: 450px;
+  width: 100%;
+  left: 0;
+
 }
 
 #floating-content-2 {
   position: absolute;
-  float: left;
   height: 100%;
-  max-width: 450px;
+  width: 100%;
+  left: 100%;
 }
 
 .carouselWrap {
@@ -48,6 +38,7 @@
   background: white;
   height: 100%;
   text-align: center;
+  width: 100%;
 }
 
 .animate {
@@ -59,11 +50,6 @@
 
 .device {
   width: 100%;
-	//height: 100%;
-	//-webkit-background-size: cover;
-	//   -moz-background-size: cover;
-	//     -o-background-size: cover;
-	//        background-size: cover;
 	position: absolute; margin: auto;
 	top: 0px;
   bottom: 0px;
@@ -73,27 +59,10 @@
 
 
 .content {
-
   height:100%;
-  /*
-  width:100%;
-	background: #375585;
-	position: absolute;
-	top: 0px; left: 0px;
-	z-index: 300;
-  */
 	-webkit-transition: all 250ms ease;
 	   -moz-transition: all 250ms ease;
 	    -ms-transition: all 250ms ease;
 	     -o-transition: all 250ms ease;
 	        transition: all 250ms ease;
 }
-
-
-
-/**
- *  Do not remove the comment below. It's the markers used by gulp-inject to inject
- *  all your sass files automatically
- */
-// injector
-// endinjector

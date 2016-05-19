@@ -4,16 +4,14 @@ export function HoleDirective() {
     let directive = {
         restrict: 'E',
         scope: {
-          index: '<'
+          index: '<',
+          hideScrollY: '<'
         },
         templateUrl: 'app/components/directives/hole/hole.html',
         replace: true,
         bindToController: true,
         controller: HoleController,
-        controllerAs: 'game',
-        link: function (scope, element) {
-
-        }
+        controllerAs: 'game'
 
     };
 
@@ -23,7 +21,7 @@ export function HoleDirective() {
 const fairway = 1;
 
 class HoleController {
-  constructor($rootScope, $scope, GameService, $log) {
+  constructor($rootScope, $scope, GameService, $log, $element) {
     'ngInject'
 
       this.GameService = GameService;
@@ -31,6 +29,7 @@ class HoleController {
       this.$scope = $scope;
       this.$log = $log;
 
+      this.$element = $element;
       this.playerIndex = 0;
 
       this.model = this.GameService.result;
@@ -42,7 +41,7 @@ class HoleController {
 
       $scope.$watchCollection(() =>  [this.model.players[this.playerIndex].putts, this.model.players[this.playerIndex].sandStrokes, this.model.players[this.playerIndex].penalties], () => {
           this.calculateStrokes();
-      });
+      }, false);
 
       $scope.$watch(() => this.model.players[this.playerIndex].strokes, (oldValue, newValue) => {
           if(oldValue < newValue) {
@@ -51,9 +50,11 @@ class HoleController {
       });
 
       $scope.$watch(() => $scope.game.index, (value) => {
-        console.log('updated SCopE index', value);
-        this.model = this.GameService.results[$scope.game.index+1];
-
+        this.model = this.GameService.results[value+1];
+        let slideElement = this.$element[0].querySelector('.slide-content');
+        if (slideElement) {
+          slideElement.scrollTop = 0;
+        }
       });
 
   }
@@ -98,25 +99,6 @@ class HoleController {
           return;
       }
 
-  }
-
-  accept() {
-    this.GameService.addHoleResult(this.model, this.holeIndex);
-    this.$log.log('model', this.model);
-    this.holeIndex = this.GameService.playedHoles;
-    this.slideDirection = 'right';
-    this._updateView();
-  }
-
-  finish() {
-    this.$log.log('do finish here');
-    this.GameService.finishCourse(this.model, this.holeIndex);
-  }
-
-  _updateView() {
-    this.playerIndex = 0;
-    this.model = this.GameService.getHoleResults(this.holeIndex);
-    this.players = [this.model.players[0]];
   }
 
   previousHole() {

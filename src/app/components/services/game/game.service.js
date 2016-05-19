@@ -20,14 +20,12 @@ export class GameService {
     this.results = [];
     this.holeIndex = 0;
     this.holes = this.getGameSetup().course.holes;
-    this.holes.forEach((hole) => {
+    this.holes.forEach(() => {
       this.results.push(this._createPlayerModel());
     });
     this.result = this.results[0];
-    this.$log.log('holes', this.results);
 
   }
-
 
   getModes() {
     return GAME_MODES;
