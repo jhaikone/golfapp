@@ -2,7 +2,7 @@
             hm-panmove="move($event)"
             hm-panstart="start($event)"
             hm-panend="end($event)"
-            hm-recognizer-options='{"type": "pan", "stopPropagation": true, "preventDefault": true}'
+            hm-recognizer-options='{"type": "pan", "stopPropagation": true, "preventDefault": true, "invokeApply": false}'
             ng-style="{'width': carouselWidth, 'left': leftPositions[0]}"
 
     >
